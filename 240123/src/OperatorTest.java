@@ -13,11 +13,21 @@ public class OperatorTest {
 		
 		int t = n1+n2;
 		
-		for (int i=0; i<6; i++) {
-			for (int k=0; k<i; k++) {
-				System.out.print("*");
-			}
-			System.out.println();
-		}
+//		별찍기
+//		for (int i=0; i<6; i++) {
+//			for (int k=0; k<i; k++) {
+//				System.out.print("*");
+//			}
+//			System.out.println();
+//		}
+		
+		int x = 20, y=30;
+		int max = x>y? x:y;
+		System.out.println(max);
+		
+		int i = 10;
+		i += 3+5; // i=i*(3+5)
+		
+		
 	}
 }
