@@ -7,7 +7,7 @@ import java.util.Scanner;
 //짝수인 경우에는 2로 나눈 몫을 출력하는 프로그램을 작성
 //입력되는 정수의 개수는 100개 이하이다.
 
-public class ArrayExam09 {
+public class ArrayExam09 { 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int [] arr = new int [100];
