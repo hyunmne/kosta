@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class ArrayExam03 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int [] arr = new int [100];
+		int [] arr = new int [100]; 
 		int i=0, val;
 		
 		while(true) {
