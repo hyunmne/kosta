@@ -6,7 +6,8 @@ package test;
 
 public class ArrayExam {
 	public static void main(String[] args) {
-		char[] hex = {'c', 'a', 'f', 'e'}; //329dfc
+//		char[] hex = {'c', 'a', 'f', 'e'}; //329dfc
+		char[] hex = {'3', '2', '9', 'D', 'E', 'F'}; //329dfc
 		String[] binary = { "0000", "0001", "0010", "0011",
 							"0100", "0101", "0110", "0111",
 							"1000", "1001", "1010", "1011",
