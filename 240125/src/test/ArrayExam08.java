@@ -19,7 +19,7 @@ public class ArrayExam08 {
 //			val = arr[i];
 			arr[i] = val;
 		}
-
+ 
 		for (int j=0; j<i; j++) {
 			if (arr[j] % 5 == 0) {
 				cnt++;
