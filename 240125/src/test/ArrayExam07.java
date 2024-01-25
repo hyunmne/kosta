@@ -11,7 +11,7 @@ public class ArrayExam07 {
 		Scanner sc = new Scanner(System.in);
 		int [] narr = new int[100];
 		int val = 0, i=0;
-		
+		 
 		int max = narr[0];
 		int min = narr[0];
 		
