@@ -13,5 +13,21 @@ public class ArrayTest2 {
 		System.out.println(arr.length);
 		System.out.println(arr[0].length);
 		System.out.println(arr[1].length);
+		
+		int [][] arr2 = new int[][] {
+			{1,2}, {10,20}, {100,200}
+		};
+		
+		int [][] arr3;
+		arr3 = new int[][] {{1,2},{10,20},{100,200}};
+		
+		int sum = 0;
+		for (int i=0; i<arr2.length; i++) {
+			for (int j=0; j<arr2[i].length; j++) {
+				sum += arr2[i][j];
+			}
+		}
+		
+		System.out.println(sum);
 	}
 }
