@@ -1,6 +1,6 @@
 package test;
 
-public class ArrayExam1 {
+public class ArrayExam01 {
 	public static void main(String[] args) {
 		char[] carr = {'A','E','C','X','Y','c','b','z','e'};
 		
