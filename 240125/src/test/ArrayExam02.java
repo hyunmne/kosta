@@ -1,6 +1,6 @@
 package test;
 
-public class ArrayExam2 {
+public class ArrayExam02 {
 	public static void main(String[] args) {
 		int[] arr = {10, 20, 25, 66, 83, 7, 22, 90, 1, 100};
 		

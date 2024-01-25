@@ -6,7 +6,7 @@ import java.util.Scanner;
 //그 때가지 입력된 최대값과 최소값을 출력하는 프로그램을 작성하시오.
 //입력 받는 정수는 100개 이하이다.
 
-public class ArrayExam7 {
+public class ArrayExam07 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int [] narr = new int[100];

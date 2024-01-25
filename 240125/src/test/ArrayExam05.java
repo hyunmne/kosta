@@ -5,7 +5,7 @@ import java.util.Scanner;
 //6명의 몸무게를 입력 받아 몸무게의 평균을 프로그램을 작성하시오.
 //출력은 반올림하여 소수 첫째짜리로 한다.
 
-public class ArrayExam5 {
+public class ArrayExam05 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		

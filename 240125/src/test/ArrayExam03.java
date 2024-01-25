@@ -6,7 +6,7 @@ import java.util.Scanner;
 //입력을 중단하고 -1을 제외한 마지막 세개의 정수를 더하는 프로그램을 작성하시오
 //(입력받은 정수가 -1을 제외하고 3개 미만일 경우에는 -1을 제외하고 입력 받은 정수를 모두 출력한다.)
 
-public class ArrayExam3 {
+public class ArrayExam03 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int [] arr = new int [100];

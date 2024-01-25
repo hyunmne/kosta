@@ -5,7 +5,7 @@ import java.util.Scanner;
 //100개 이하의 정수를 입력 받다가 0이 입력되면 그때까지 입력된 정수 중 5의 배수의 개수와
 //합계 평균을 출력하는 프로그램을 작성하시오. 평균은 소수점 이하 1자리까지 출력한다.
 
-public class ArrayExam8 {
+public class ArrayExam08 {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int[] arr = new int [100];
