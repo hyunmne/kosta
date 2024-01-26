@@ -1,7 +1,7 @@
 package homework;
 
 // 주어진 배열을 시계 방향으로 90도 회전시켜서 출력하는 프로그램을 완성하시오.
-public class Homework9 {
+public class Homework09 {
 	public static void main(String[] args) {
 		char[][] star = {
 				{'*','*',' ',' ',' '},
