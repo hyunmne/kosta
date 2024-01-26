@@ -7,9 +7,13 @@ public class Homework08 {
 		int[] answer = { 1,4,4,3,1,4,4,2,1,3,2 };
 		int[] counter = new int[4];
 		
-		// 숫자 갯수 세기
-		for(int i=0; i < answer.length;i++) { // 20번 반복
-			counter[answer[i]-1]++;
+		// 숫자 갯수 세서 counter 배열에 넣어주기 
+		for(int i=0; i < answer.length;i++) { 
+			// answer[i]의 데이터가 char[]의 i번째와 같으면 +1 
+			// 배열은 0부터 시작하기 때문에 -1을 해준다 
+			// ex) answer[3] = 3
+			// ex) counter[2] = 3    || counter[] = {0,1,2,3}
+			counter[answer[i]-1]++; 
 		}
 		
 		// 숫자 개수만큼 별 찍기 
