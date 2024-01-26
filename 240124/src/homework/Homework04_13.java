@@ -14,7 +14,7 @@ public class Homework04_13 {
 		for(int i=0; i < value.length() ; i++) {  // 문자열의 길이만큼 반복
 			ch = value.charAt(i);
 
-			if(!(ch >= '0' && ch <= '9')) {
+			if(!(ch >= '0' && ch <= '9')) { // 숫자인지 아닌지 판별하기
 				isNumber = false;
 				break;
 			}
