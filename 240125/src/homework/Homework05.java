@@ -1,6 +1,6 @@
 package homework;
 
-//다음은 1과 9사이의 중복되지 않은 숫자로 이루어진 3자리 숫자를 만들어내는 프로그램이다.
+//다음은 1과 9 사이의 중복되지 않은 숫자로 이루어진 3자리 숫자를 만들어내는 프로그램이다.
 
 public class Homework05 {
 	public static void main(String[] args) {
@@ -12,7 +12,7 @@ public class Homework05 {
 			int i = (int)(Math.random() * ballArr.length);
 			int j = (int)(Math.random() * ballArr.length);
 			int tmp = 0;
-
+ 
 			tmp = ballArr[i];
 			ballArr[i] = ballArr[j];
 			ballArr[j] = tmp;
@@ -23,7 +23,6 @@ public class Homework05 {
 			ball3[i] = ballArr[i];
 		}
 		
-		System.out.println();
 		for(int i=0; i<ball3.length; i++) {
 			System.out.print(ball3[i]+" ");
 		}
