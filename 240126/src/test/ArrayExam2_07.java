@@ -26,10 +26,10 @@ public class ArrayExam2_07 {
 		
 		for (int i=0; i<tri.length; i++) {
 			for (int j=1; j<tri[i].length; j++) {
-				if (tri[i][j]!=0) {
+				if (tri[i][j]!=0) { // 0이면 출력하지 않게 조건문 작성
 					System.out.print(tri[i][j]+" ");
 				}
-			}
+			} 
 			System.out.println();
 		}
 	}	
