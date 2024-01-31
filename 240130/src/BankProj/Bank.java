@@ -15,6 +15,7 @@ public class Bank {
 		System.out.println("3. 출금");
 		System.out.println("4. 계좌 조회");
 		System.out.println("5. 전체 계좌 조회");
+		System.out.println("6. 계좌 이체");
 		System.out.print("선택 >> ");
 		return sc.nextInt();
 	}
@@ -46,15 +47,23 @@ public class Bank {
 		System.out.print("입금하실 금액을 입력해주세요. ");
 		int money = sc.nextInt();
 		
-		for (int i=0; i<accs.length; i++) {
-			if (accs[i].id.equals(id)) {
-				accs[i].balance += money;
-				System.out.println(accs[i].name + "님 계좌에 "+money +"원 입금이 완료 되었습니다.");
-				System.out.println();
-				return;
-			}
+		Account acc = searchAccById(id);
+		if (acc==null) {
+			System.out.println("계좌번호가 틀립니다.");
+		} else {
+			acc.deposit(money);
 		}
+		
+//		for (int i=0; i<accs.length; i++) {
+//			if (accs[i].id.equals(id)) {
+//				accs[i].balance += money;
+//				System.out.println(accs[i].name + "님 계좌에 "+money +"원 입금이 완료 되었습니다.");
+//				System.out.println();
+//				return;
+//			}
+//		}
 	}
+	
 	void withdraw() {
 		System.out.println("[출금]");
 		System.out.print("출금하실 계좌번호를 입력해주세요. ");
@@ -63,39 +72,89 @@ public class Bank {
 		System.out.print("출금할 금액을 입력해주세요. ");
 		int money = sc.nextInt();
 		
-		for (int i=0; i<accs.length; i++) {
-			if (accs[i].id.equals(id)) {
-				accs[i].balance -= money;
-				System.out.println(accs[i].name + "님 계좌에 "+money +"원 출금이 완료 되었습니다.");
-				System.out.println();
-				return;
-			}
+		Account acc = searchAccById(id);
+		if (acc==null) {
+			System.out.println("계좌번호가 틀립니다.");
+		} else {
+			acc.withdraw(money);
 		}
+		
+//		for (int i=0; i<accs.length; i++) {
+//			if (accs[i].id.equals(id)) {
+//				accs[i].balance -= money;
+//				System.out.println(accs[i].name + "님 계좌에 "+money +"원 출금이 완료 되었습니다.");
+//				System.out.println();
+//				return;
+//			}
+//		}
 	}
+	
+	Account searchAccById(String id) {
+		for (int i=0; i<cnt; i++) {
+			if(accs[i].id.equals(id))
+				return accs[i];
+		}
+		return null;
+	}
+	
 	void accountInfo() {
 		System.out.println("[계좌 조회]");
 		System.out.print("계좌 번호 : ");
 		String id = sc.next();
 		// 1. accs에서 id에 해당하는 Account를 찾는다.
-		// 2. 찾은 계좌의 정보를 출력한다.
+		Account acc = searchAccById(id);
 		
-		for (int i=0; i<accs.length; i++) {
-			if (accs[i].id.equals(id)) {
-				System.out.println(accs[i].name+"님의 계좌 정보");
-				System.out.println(String.format("계좌 번호 : %s, 이름 : %s, 잔액 : %d", accs[i].id, accs[i].name, accs[i].balance));
-				System.out.println();
-				return;
-			}
+		// 2. 찾은 계좌의 정보를 출력한다.
+		if(acc==null) {
+			System.out.println("계좌번호가 틀립니다.");
+		} else {
+			System.out.println(acc.info());
 		}
+		
+//		for (int i=0; i<accs.length; i++) {
+//			if (accs[i].id.equals(id)) {
+//				System.out.println(accs[i].name+"님의 계좌 정보");
+//				System.out.println(String.format("계좌 번호 : %s, 이름 : %s, 잔액 : %d", accs[i].id, accs[i].name, accs[i].balance));
+//				System.out.println();
+//				return;
+//			}
+//		}
 	}
 	
 	void allAccountInfo() {
 		System.out.println("[전체 계좌 조회]");
-		for (int i=0; i<accs.length; i++) {
-			System.out.println(String.format("계좌 번호 : %s, 이름 : %s, 잔액 : %d", accs[i].id, accs[i].name, accs[i].balance));
+		for (int i=0; i<cnt; i++) {
+			System.out.println(accs[i].info());
 			System.out.println();
+		}
+	}
+	
+	void transfer() {
+		System.out.println("[계좌 이체]");
+		System.out.print("송금 계좌 번호를 입력해주세요. ");
+		String sendId = sc.next();
+		System.out.print("받는 계좌 번호를 입력해주세요. ");
+		String recvId = sc.next();
+		System.out.print("이체금액을 입력해주세요. ");
+		int money = sc.nextInt();
+		
+		Account acc = searchAccById(sendId);
+		Account acc2 = searchAccById(recvId);
+		if (acc==null) {
+			System.out.println("계좌번호가 틀립니다.");
+			return;
+		} 
+		if (acc2==null) {
+			System.out.println("계좌번호가 틀립니다.");
+			return;
+		} 
+		if(acc.balance<money) {
+			System.out.println("잔액이 부족합니다.");
 			return;
 		}
+		acc.withdraw(money);
+		acc2.deposit(money);
+		
 	}
 	
 	public static void main(String[] args) {
@@ -109,6 +168,7 @@ public class Bank {
 			case 3: bank.withdraw(); break;
 			case 4: bank.accountInfo(); break;
 			case 5: bank.allAccountInfo(); break;
+			case 6: bank.transfer(); break;
 			}
 		}
 	}
