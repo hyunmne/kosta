@@ -10,7 +10,7 @@ class MemberCall {
 	static int cv = 20;
 	
 	int iv2 = cv;
-//	static int cv2 = iv; // 라인 A : 클래스 변수인 cv로 인스턴스 변수를 초기화 하려고 함.
+//	static int cv2 = iv; // 라인 A : static에서 인스턴스를 초기화 할 수 없다.
 	
 	static void staticMethod1() {
 		System.out.println(cv);

@@ -9,28 +9,37 @@ public class Homework06_05 {
 
 class Student1 {
 	String name;
-	int a;
-	int b;
-	int eng;
+	int ban;
+	int no;
 	int kor;
+	int eng;
 	int math;
 	int sum;
 	float avg;
 
-	Student1(String name, int a, int b, int eng, int kor, int math){
+	int getTotal() {
+        int sum = kor + eng + math;
+        return sum;
+    }
+
+    float getAverage() {
+        return (Math.round(getTotal()/3f * 10.0) / 10.0f);
+    }
+    
+	Student1(String name, int ban, int no, int eng, int kor, int math){
 		this.name = name;
-		this.a = a;
-		this.b = b;
+		this.ban = ban;
+		this.no = no;
 		this.eng=eng;
 		this.kor=kor;
 		this.math=math;
 		
-		sum = eng + kor + math;
-		avg = (float) (Math.round((sum/3)*10.0)/10.0);
+		sum = getTotal();
+		avg = getAverage();
 	}
 
 	String info() {
-		return name+", "+a+", "+b+", "+eng+", "+kor+", "+math+", "+sum+", "+avg;
+		return name+", "+ban+", "+no+", "+eng+", "+kor+", "+math+", "+sum+", "+avg;
 	}
 
 }
