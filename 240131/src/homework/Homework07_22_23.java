@@ -30,12 +30,12 @@ abstract class Shape {
 	
 	abstract double calcArea(); // 도형의 면적을 계산해서 반환하는 메서드
 	
-//	Point getPosition() {
-//		return p;
-//	}
-//	void setPosition(Point p) {
-//		this.p = p;
-//	}
+	Point getPosition() {
+		return p;
+	}
+	void setPosition(Point p) {
+		this.p = p;
+	}
 }
 
 class Point {
@@ -80,11 +80,12 @@ class Rectangle extends Shape {
 		this.height = height;
 		this.width = width;
 		this.p = point;
+//		super(point);
 	}
 
 	public Rectangle(int width, int height) {
-		this.height = height;
 		this.width = width;
+		this.height = height;
 	}
 
 	@Override
@@ -97,11 +98,13 @@ class Rectangle extends Shape {
 			return true;
 		}
 		return false;
+		
+//		return width == height ? true:false;
 	}
 	
 }
 
-public class Homework07_22 {
+public class Homework07_22_23 {
 	
 	public static double sumArea(Shape[] arr) {
 		double sum = 0;
