@@ -22,7 +22,7 @@ class ChildMyClass extends MyClass {
 	
 }
 
-public class Homowork07_09 {
+public class Homework07_09 {
 	public static void main(String[] args) {
 		MyClass mc1 = new MyClass(5);
 		MyClass mc2 = new MyClass(3);
