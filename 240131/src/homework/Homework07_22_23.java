@@ -126,7 +126,7 @@ public class Homework07_22_23 {
 		for (int i=0; i<ss.length; i++) {
 			System.out.println(ss[i].calcArea());
 		}
-//		System.out.println("면적의 합 : " + sumArea(ss));
+		System.out.println("면적의 합 : " + sumArea(ss));
 		
 		Shape[] arr = { new Circle(5.0), new Rectangle(3, 4), new Circle(1) };
 		System.out.println("면적의 합 : " + sumArea(arr));
