@@ -1,5 +1,8 @@
 package emp;
 
+import exp.BankError;
+import exp.BankException;
+
 public class Account {
 	
 	String id;
@@ -40,8 +43,11 @@ public class Account {
 		if(money > 0) balance += money;
 	}
 	
-	public void withdraw(int money) {
+	public void withdraw(int money) throws BankException {
 		if(money <= balance) balance -= money;
+//		if (balance < money) {
+//			throw new BankException(BankError.OVERDRAWN);
+//		}
 	}
 	
 	public String info() {
@@ -49,7 +55,7 @@ public class Account {
 		return String.format("계좌번호:%s, 이름:%s, 잔액:%d", id, name, balance); 
 	}
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws BankException {
 		Account acc1 = new Account();
 		acc1.id = "1002";
 		acc1.name = "김길동";
