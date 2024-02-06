@@ -3,9 +3,12 @@ package chapter08;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/* 다음은 1~100사이의 숫자를 맞추는 게임을 실행하던 도중에 숫자가 아닌 영문자를 넣어서 발생한 예외이다. 
+   예외처리를 해서 숫자가 아닌 값을 입력했을 때는 다시 입력을 받도록 보완하라.
+ */
 
 class Exam08_08 { 
-	public static void main(String[] args) throws Exception { 
+	public static void main(String[] args){ 
 		// 1~100사이의 임의의 값을 얻어서 answer에 저장한다. 
 		int answer = (int)(Math.random() * 100) + 1; 
 		int input = 0; // 사용자입력을 저장할 공간 
@@ -30,8 +33,6 @@ class Exam08_08 {
 			} catch(InputMismatchException e) {
 				System.out.println("유효하지 않은 값입니다. 다시 값을 입력해주세요.");
 			}
-
-			
 		} while(true); // 무한반복문 
 	} // end of main 
 } // end of class HighLow
