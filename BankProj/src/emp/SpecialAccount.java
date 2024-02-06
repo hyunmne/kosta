@@ -1,3 +1,4 @@
+package emp;
 //	** SpecialAccount
 //	1. Account의 모든 속성과 기능을 가지고 있음.
 //	2. 등급(grade)에 따라 입금시마다 입금액의 특정 퍼센트 만큼 입금을 추가해 줌.
@@ -7,18 +8,26 @@ public class SpecialAccount extends Account {
 	
 	String grade;
 	
-	SpecialAccount(String id, String name, int balance, String grade){
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public SpecialAccount(String id, String name, int balance, String grade){
 		super(id, name, balance);
 		this.grade = grade;
 	}
 	
 	@Override
-	String info() {
+	public String info() {
 		return super.info() + ", 등급:" + grade;
 	}
 	
 	@Override
-	void deposit(int money) {
+	public void deposit(int money) {
 		double rate = 0;
 		switch (grade.toUpperCase()) {  //grade값을 모두 대문자로 바꾸기
 		case "VIP": rate = 0.04; break;

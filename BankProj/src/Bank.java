@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+import emp.Account;
+import emp.SpecialAccount;
+
 public class Bank {
 	
 	Scanner sc = new Scanner(System.in);
@@ -102,7 +105,7 @@ public class Bank {
 		} else {
 			System.out.print("금액을 입력하세요: ");
 			int money = sc.nextInt();
-			if(acc.balance >= money) {
+			if(acc.getBalance() >= money) {
 				acc.withdraw(money);
 				System.out.println(money + "원이 출금되었습니다.");
 			}else {
@@ -131,7 +134,7 @@ public class Bank {
 	
 	Account searchAccById(String id) {
 		for(int i = 0; i < cnt; i++) {
-			if(accs[i].id.equals(id)) {
+			if(accs[i].getId().equals(id)) {
 				return accs[i];
 			}
 		}
@@ -190,7 +193,7 @@ public class Bank {
 		
 		System.out.print("이체금액: ");
 		int money = sc.nextInt();
-		if(sendAcc.balance < money) {
+		if(sendAcc.getBalance() < money) {
 			System.out.println("잔액이 부족합니다.");
 			return;
 		}
