@@ -1,4 +1,5 @@
 import emp.Employee;
+import emp.IBusinessTrip;
 import emp.PartTime;
 import emp.Permanent;
 import emp.Sales;
@@ -7,7 +8,7 @@ public class Company {
 	Employee[] emps = new Employee[100];
 	int cnt;
 
-	void addEmployee(Employee emp) { //Employee emp = new PartTime("102","°í±æµ¿",160,10000)
+	void addEmployee(Employee emp) { //Employee emp = new PartTime("102","ï¿½ï¿½æµ¿",160,10000)
 		emps[cnt++] = emp;
 	}
 
@@ -30,20 +31,30 @@ public class Company {
 		}
 		return tot;
 	}
+	
+	void regBusinessTrip(IBusinessTrip emp, int day) {
+		emp.goBusinessTrip(day);
+	}
+	
 	public static void main(String[] args) {
 		Company com = new Company();
-		Permanent emp1 = new Permanent("100","È«±æµ¿",1000000);
-		Sales emp2 = new Sales("101","±è±æµ¿",800000,500000);
-		PartTime emp3 = new PartTime("102","°í±æµ¿",160,10000);
+		Permanent emp1 = new Permanent("100","í™ê¸¸ë™",1000000);
+		Sales emp2 = new Sales("101","ê¹€ê¸¸ë™",800000,500000);
+		PartTime emp3 = new PartTime("102","ê³ ê¸¸ë™",160,10000);
+		
 		com.addEmployee(emp1);
 		com.addEmployee(emp2);
 		com.addEmployee(emp3);
+		
+//		com.regBusinessTrip(emp1, 2); // error
+		com.regBusinessTrip(emp2, 2); 
+		com.regBusinessTrip(emp3, 2); 
 		com.allEmployeeInfo();
-		System.out.println("ÃÑ ±Ş¿©¾×:"+com.getTotalPay());
+		System.out.println("ì´ ê¸‰ì—¬ ì•¡ :"+com.getTotalPay());
 	}
 }
-//Ãâ·Â°á°ú
-//»ç¹ø:100, ÀÌ¸§:È«±æµ¿, ±Ş¿©:1000000
-//»ç¹ø:101, ÀÌ¸§:±è±æµ¿, ±Ş¿©:1300000
-//»ç¹ø:102, ÀÌ¸§:°í±æµ¿, ±Ş¿©:1600000
-//ÃÑ ±Ş¿©¾×:3900000
+//ï¿½ï¿½Â°ï¿½ï¿½
+//ï¿½ï¿½ï¿½:100, ï¿½Ì¸ï¿½:È«ï¿½æµ¿, ï¿½Ş¿ï¿½:1000000
+//ï¿½ï¿½ï¿½:101, ï¿½Ì¸ï¿½:ï¿½ï¿½æµ¿, ï¿½Ş¿ï¿½:1300000
+//ï¿½ï¿½ï¿½:102, ï¿½Ì¸ï¿½:ï¿½ï¿½æµ¿, ï¿½Ş¿ï¿½:1600000
+//ï¿½ï¿½ ï¿½Ş¿ï¿½ï¿½ï¿½:3900000

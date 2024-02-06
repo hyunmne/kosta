@@ -9,7 +9,7 @@ public class Permanent extends Employee {
 	}
 	@Override
 	public String toString() {
-		return super.toString()+", ±Þ¿©:"+getPay();
+		return super.toString()+", ê¸‰ì—¬ : "+getPay();
 	}
 	public int getPay() {
 		return salary;

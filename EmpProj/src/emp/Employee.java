@@ -10,7 +10,7 @@ abstract public class Employee {
 	}
 	@Override
 	public String toString() {
-		return "»ç¹ø:"+id+", ÀÌ¸§:"+name;
+		return "ì‚¬ë²ˆ:"+id+", ì´ë¦„:"+name;
 	}
 	abstract public int getPay();
 }

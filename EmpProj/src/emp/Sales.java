@@ -1,6 +1,6 @@
 package emp;
 
-public class Sales extends Permanent {
+public class Sales extends Permanent implements IBusinessTrip {
 	int bonus;
 	public Sales() {}
 	public Sales(String id,String name, int salary, int bouns) {
@@ -10,5 +10,9 @@ public class Sales extends Permanent {
 	@Override
 	public int getPay() {
 		return super.getPay()+bonus;
+	}
+	@Override
+	public void goBusinessTrip(int day) {
+		bonus += day * 100000;
 	}
 }
