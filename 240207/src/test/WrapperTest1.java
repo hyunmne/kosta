@@ -10,6 +10,6 @@ public class WrapperTest1 {
 		Double d = 3.14; // Boxing
 		double dd = d;// UnBoxing
 		
-		Object obj = 100;
+		Object obj = 100; // Boxing && Upcasting
 	}
 }
