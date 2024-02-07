@@ -54,6 +54,10 @@ public class StringTest3 {
 		System.out.println(ten);
 		System.out.println(tru);
 		System.out.println(per);
+		
+		String str12 = "ABabABab";
+		int idx5 = str12.indexOf("AB");
+		System.out.println(idx5);
 	
 	}
 }
