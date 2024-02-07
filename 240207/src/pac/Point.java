@@ -3,7 +3,7 @@ package pac;
 public class Point {
 	int x;
 	int y;
-	
+
 	public int getX() {
 		return x;
 	}
@@ -24,7 +24,7 @@ public class Point {
 		this.x = x;
 		this.y = y;
 	}
-
+	
 	@Override
 	public String toString() {
 		return String.format("[%d, %d]", x,y);
@@ -32,6 +32,7 @@ public class Point {
 
 	@Override
 	public Object clone() {
+//		return String.format("이름 : %d, 나이 : %d", x, y);
 		return new Point(x, y);
 	}
 }

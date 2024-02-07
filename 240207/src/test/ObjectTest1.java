@@ -1,8 +1,9 @@
 package test;
 
-class Person {
+class Person implements Cloneable {
 	int age;
 	String name;
+	
 	Person(String name, int age){
 		this.name=name;
 		this.age=age;
@@ -24,6 +25,18 @@ class Person {
 	public String toString() {
 		return String.format("이름:%s, 나이:%s", name, age);
 	}
+	
+	@Override
+	protected Object clone() {
+		Object obj=null; 
+		try {
+			obj = super.clone();
+		} catch (CloneNotSupportedException e) {
+			e.printStackTrace();
+		}
+		return obj;
+	}
+	
 }
 
 public class ObjectTest1 {
