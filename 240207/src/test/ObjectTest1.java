@@ -14,6 +14,16 @@ class Person {
 		Person per = (Person) obj;
 		return name.equals(per.name) && age == per.age;
 	}
+	
+	@Override
+	public int hashCode() {
+		return name.hashCode()+age;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("이름:%s, 나이:%s", name, age);
+	}
 }
 
 public class ObjectTest1 {

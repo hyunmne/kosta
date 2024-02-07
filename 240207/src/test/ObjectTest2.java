@@ -15,6 +15,16 @@ class Complex {
 		Complex com = (Complex) obj;
 		return real == com.real && imaginary==com.imaginary;
 	}
+	
+	@Override
+	public int hashCode() {
+		return real*2+imaginary*3;
+	}
+	
+	@Override
+	public String toString() {
+		return String.format("%d, %d", real, imaginary);
+	}
 }
 
 public class ObjectTest2 {
