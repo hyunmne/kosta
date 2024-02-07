@@ -15,8 +15,7 @@ public class Exam09_09 {
 		
 		for(int i=0; i<delCh.length(); i++) {
 			int pos =0 ;
-			char ch = delCh.charAt(i);
-			
+			char ch = delCh.charAt(i); //' ', '\t'
 			while(true) {
 				pos = sb.indexOf(ch+"");
 				if(pos==-1) break;
