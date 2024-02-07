@@ -10,7 +10,7 @@ package chapter09;
 	[힌트] StringBuffer와 String클래스의 charAt(int i)과 indexOf(int ch)를 사용하라.
  */
 public class Exam09_09 {
-	public static String delChar(String src, String delCh) {
+	public static String delChar(String src, String delCh) { // src="(1 2 3 4 \t5)", delCh=" \t"
 		StringBuffer sb = new StringBuffer(src);
 		
 		for(int i=0; i<delCh.length(); i++) {
