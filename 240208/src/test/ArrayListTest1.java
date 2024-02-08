@@ -11,7 +11,22 @@ class Person {
 	}
 	
 	public String info() {
-		return "이름 : "+name+", 나이 :"+age;
+		return "이름:"+name+", 나이:"+age;
+	}
+	
+	public String toString() {
+		return "이름:"+name+", 나이:"+age;
+	}
+	
+	public boolean equals(Object obj) {
+		if(!(obj instanceof Person)) return false;
+		Person p = (Person) obj;
+		return name.equals(p.name) && age==p.age;
+	}
+	
+	@Override
+	public int hashCode() {
+		return name.hashCode()+age;
 	}
 }
 
