@@ -2,7 +2,7 @@ package test;
 
 import java.util.ArrayList;
 
-class Person {
+class Person implements Comparable<Person>{
 	String name;
 	int age;
 	Person(String name, int age){
@@ -27,6 +27,12 @@ class Person {
 	@Override
 	public int hashCode() {
 		return name.hashCode()+age;
+	}
+	
+	@Override
+	public int compareTo(Person o) {
+//		return name.compareTo(o.name);
+		return age-o.age;
 	}
 }
 
