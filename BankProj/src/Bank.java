@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.Iterator;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import emp.Account;
 import emp.SpecialAccount;
@@ -10,7 +12,7 @@ import exp.BankException;
 public class Bank {
 
 	Scanner sc = new Scanner(System.in);
-	HashMap<String, Account> accs = new HashMap<>();
+	TreeMap<String, Account> accs = new TreeMap<>();
 	
 //	Account[] accs = new Account[100];  //null로 자동 초기화
 	int cnt;  //0으로 자동 초기화
@@ -144,6 +146,12 @@ public class Bank {
 		System.out.println("\n[전체계좌조회]");
 		for (Account acc : accs.values()) {
 			System.out.println(acc.info());
+		}
+		
+		Iterator<Account> it = accs.values().iterator();
+		
+		while(it.hasNext()) {
+			it.next().info();
 		}
 //		for(int i = 0; i < cnt; i++) {
 //			System.out.println(accs[i].info());
