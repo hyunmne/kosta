@@ -29,7 +29,7 @@ public class FileInputStreamTest1 {
 			bis = new BufferedInputStream(fis); // 보조 스트림
 			bos = new BufferedOutputStream(fos);
 			
-			byte[] buff = new byte[1024];
+			byte[] buff = new byte[10];
 			int len;
 //			int data;
 
