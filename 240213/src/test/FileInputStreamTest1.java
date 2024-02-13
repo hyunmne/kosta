@@ -24,9 +24,9 @@ public class FileInputStreamTest1 {
 //			fis = new FileInputStream("text.txt");  //파일에서 byte단위의 데이터 읽어오기
 //			fos = new FileOutputStream("text2.txt");  //파일에 byte단위의 데이터 생성 후 저장
 
-			fis = new FileInputStream(readFile);
+			fis = new FileInputStream(readFile); // 기반 스트림
 			fos = new FileOutputStream(writeFile);
-			bis = new BufferedInputStream(fis);
+			bis = new BufferedInputStream(fis); // 보조 스트림
 			bos = new BufferedOutputStream(fos);
 			
 			byte[] buff = new byte[1024];
