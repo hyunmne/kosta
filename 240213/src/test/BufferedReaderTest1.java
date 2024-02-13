@@ -7,7 +7,7 @@ import java.io.IOException;
 public class BufferedReaderTest1 {
 	public static void main(String[] args) {
 		FileReader fr = null;
-		BufferedReader br = null;
+		BufferedReader br = null; // 라인 단위로 읽어올 수 있음.
 		try {
 			fr = new FileReader("news.txt");
 			br = new BufferedReader(fr);
