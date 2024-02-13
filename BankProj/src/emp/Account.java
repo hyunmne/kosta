@@ -7,6 +7,14 @@ public class Account {
 	
 	String id;
 	String name;
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	public int balance;
 	
 	public String getId() {
