@@ -1,9 +1,11 @@
 package emp;
 
+import java.io.Serializable;
+
 import exp.BankError;
 import exp.BankException;
 
-public class Account {
+public class Account implements Serializable {
 	
 	String id;
 	String name;
