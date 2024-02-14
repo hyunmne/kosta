@@ -7,14 +7,13 @@ public class VendingMachineBiz implements IVendingMachineBiz {
 	private Drink[] cartList = new Drink[3]; // Drink 타입을 저장할 수 있는 배열 
 	private int count = 0; // 배열 갯수
 
-
 	@Override
 	public void cartDrink(Drink drink) {
 		if (balance < drink.getPrice()) {
 			System.out.println("잔액이 부족하여 구매 불가능합니다.\n");
 		} else {
 			balance -= drink.getPrice();
-			System.out.println(drink.toString()+"를 구입했습니다. 현재 잔액 : " + balance +"\n");
+			System.out.println(drink.getName()+"를 구입했습니다. 현재 잔액 : " + balance +"\n");
 			cartList[count++] = new Drink(drink.getPrice());
 		}
 		if (cartList.length == count) {

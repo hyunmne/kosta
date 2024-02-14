@@ -6,10 +6,11 @@ public class Coke extends Drink {
 	
 	public Coke(){
 		super.setPrice(cokPrice);
+		super.setName(name);
 	}
 	
 	@Override
 	public String toString() {
-		return name;
+		return "코크 	   "+getPrice()+"원";
 	}
 }
