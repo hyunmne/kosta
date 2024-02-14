@@ -38,7 +38,7 @@ public class VendingMachineTest {
 				System.out.println("프로그램 종료");
 				break;
 			} else if (sel < 0 || sel > 6) {
-				System.out.println("메뉴값 확인 후 다시 입력하세요.");
+				System.out.println("메뉴값 확인 후 다시 입력하세요.\n");
 			} else {
 				switch(sel) {
 				case 1: biz.printDrinkList(dl); break;
