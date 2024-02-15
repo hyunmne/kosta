@@ -5,7 +5,7 @@ class Secretary extends Employee implements Bonus {
 	
 	@Override
 	double tax() {
-		return sal*0.1;
+		return getSal()*0.1;
 	}
 	
 	Secretary(){}
@@ -16,7 +16,7 @@ class Secretary extends Employee implements Bonus {
 
 	@Override
 	public void incentive(int pay) {
-		sal = this.sal+(int)(pay*0.8);
+		setSal(getSal()+(int)(pay*0.8));
 	}
 
 }

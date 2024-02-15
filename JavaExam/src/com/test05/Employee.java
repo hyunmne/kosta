@@ -1,10 +1,10 @@
 package com.test05;
 
 abstract class Employee implements Bonus{
-	String name;
-	int num;
-	String dept;
-	int sal;
+	private String name;
+	private int num;
+	private String dept;
+	private int sal;
 	
 	public String getName() {
 		return name;
