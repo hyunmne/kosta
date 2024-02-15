@@ -1,16 +1,15 @@
 package com.test06.entity;
 
 public class Juice extends Drink {
-	public int juPrice = 200;
-	static final String name = "주스";
+	public static final int juPrice = 200;
+	public static final String name = "주스";
 	
 	public Juice(){
-		super.setPrice(juPrice);
-		super.setName(name);
+		super(juPrice);
 	}
 	
 	@Override
 	public String toString() {
-		return "주스 	   "+getPrice()+"원";
+		return name+" 	   "+getPrice()+"원";
 	}
 }

@@ -18,9 +18,7 @@ public class VendingMachineBiz implements IVendingMachineBiz {
 		}
 		if (cartList.length == count) {
 			Drink[] newCartList = new Drink[cartList.length*3];
-			for (int i=0; i<cartList.length; i++) {
-				newCartList[i] = cartList[i];
-			}
+			System.arraycopy(cartList, 0, newCartList, 0, cartList.length);
 			cartList = newCartList;
 		}
 	}
