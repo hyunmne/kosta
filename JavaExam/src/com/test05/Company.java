@@ -24,11 +24,17 @@ public class Company {
 		System.out.println("----------------------------------------------");
 		
 		for (Employee emp : map.values()) {
-			if (emp instanceof Secretary) {
-				((Secretary)emp).incentive(100);
-			} else if (emp instanceof Sales) {
-				((Sales)emp).incentive(100);
+			
+			// Secreatry와 Sales는 Bonus의 자식이기 때문에..? 
+			if (emp instanceof Bonus) {
+				((Bonus)emp).incentive(100);
 			}
+			
+//			if (emp instanceof Secretary) {
+//				((Secretary)emp).incentive(100);
+//			} else if (emp instanceof Sales) {
+//				((Sales)emp).incentive(100);
+//			}
 		}
 		
 		// 모든 객체의 정보와 세금을 출력한다. ( for문 이용 

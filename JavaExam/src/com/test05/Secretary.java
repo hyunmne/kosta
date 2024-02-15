@@ -1,7 +1,6 @@
 package com.test05;
 
 class Secretary extends Employee implements Bonus {
-	Bonus b;
 	
 	@Override
 	double tax() {
