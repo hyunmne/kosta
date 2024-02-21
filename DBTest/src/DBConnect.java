@@ -60,6 +60,79 @@ public class DBConnect {
 		}
 	}
 	
+	public static void updateUserName(String id, String name) {
+		// getConnection 메서드에서 conn을 받아옴
+		Connection conn = getConnection();
+		Statement stmt = null;
+		String sql = String.format("update user set name = '%s' where id = '%s'",name,id);
+		try {
+			stmt = conn.createStatement();
+			int cnt = stmt.executeUpdate(sql);
+			System.out.println(cnt+"개 데이터 수정");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(stmt !=null) stmt.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+			close(conn);
+		}
+	}
+	
+	public static void deleteUser(String id) {
+		// getConnection 메서드에서 conn을 받아옴
+		Connection conn = getConnection();
+		Statement stmt = null;
+		String sql = String.format("delete from user where id = '%s'",id);
+		try {
+			stmt = conn.createStatement();
+			int cnt = stmt.executeUpdate(sql);
+			System.out.println(cnt+"개 데이터 삭제");
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(stmt !=null) stmt.close();
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+			close(conn);
+		}
+	}
+	
+	public static void allUserInfo() {
+		Connection conn = getConnection();
+		Statement stmt = null;
+		ResultSet rset = null; 
+		String sql = "select * from user";
+		
+		try {
+			stmt = conn.createStatement();
+			rset = stmt.executeQuery(sql);
+			if(rset!=null) {
+				while(rset.next()) {
+					String rid = rset.getString(1);
+					String rname = rset.getString(2);
+					System.out.println("id : "+rid+", name : "+rname);
+				}
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rset!=null) rset.close();
+				if(stmt!=null) rset.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			close(conn);
+		}
+	}
+	
 	public static void userInfo(String id) {
 		Connection conn = getConnection();
 		Statement stmt = null;
@@ -87,7 +160,11 @@ public class DBConnect {
 
 	public static void main(String[] args) {
 //		insertUser("song", "송송송");
-		userInfo("song");
+//		updateUserName("song", "송송이");
+//		userInfo("song");
+//		deleteUser("song");
+		allUserInfo();
 	}
+
 }
 
