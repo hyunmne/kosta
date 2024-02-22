@@ -1,4 +1,4 @@
-package emp;
+package acc;
 //	** SpecialAccount
 //	1. Account의 모든 속성과 기능을 가지고 있음.
 //	2. 등급(grade)에 따라 입금시마다 입금액의 특정 퍼센트 만큼 입금을 추가해 줌.
@@ -26,12 +26,12 @@ public class SpecialAccount extends Account implements Serializable {
 	}
 	
 	@Override
-	public String info() {
-		return super.info() + ", 등급:" + grade;
+	public String toString() {
+		return super.toString() + ", 등급:" + grade;
 	}
 	
 	@Override
-	public void deposit(int money) {
+	public void deposit(int money) throws BankException{
 		double rate = 0;
 		switch (grade.toUpperCase()) {  //grade값을 모두 대문자로 바꾸기
 		case "VIP": rate = 0.04; break;
@@ -58,11 +58,11 @@ public class SpecialAccount extends Account implements Serializable {
 	
 	public static void main(String[] args) throws BankException {
 		SpecialAccount sacc = new SpecialAccount("1001", "홍길동", 100000, "vip");
-		System.out.println(sacc.info());
+		System.out.println(sacc.toString());
 		sacc.deposit(10000);
-		System.out.println(sacc.info());
+		System.out.println(sacc.toString());
 		sacc.withdraw(5000);
-		System.out.println(sacc.info());
+		System.out.println(sacc.toString());
 	}
 }
 

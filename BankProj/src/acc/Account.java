@@ -1,4 +1,4 @@
-package emp;
+package acc;
 
 import java.io.Serializable;
 
@@ -49,8 +49,9 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 	
-	public void deposit(int money) {
-		if(money > 0) balance += money;
+	public void deposit(int money) throws BankException {
+		if(money<=0) throw new BankException(BankError.DEPOSIT);
+		balance += money;
 	}
 	
 	public void withdraw(int money) throws BankException {
@@ -60,7 +61,7 @@ public class Account implements Serializable {
 //		}
 	}
 	
-	public String info() {
+	public String toString() {
 //		return "계좌번호:" + id + ", 이름:" + name + ", 잔액:" + balance; 
 		return String.format("계좌번호:%s, 이름:%s, 잔액:%d", id, name, balance); 
 	}
@@ -73,11 +74,11 @@ public class Account implements Serializable {
 		Account acc2 = new Account("1001", "홍길동", 100000);
 		Account acc3 = new Account("1003", "강길동");
 		
-		System.out.println(acc1.info());
+		System.out.println(acc1.toString());
 		acc1.deposit(10000);
-		System.out.println(acc1.info());
+		System.out.println(acc1.toString());
 		acc1.withdraw(5000);
-		System.out.println(acc1.info());
+		System.out.println(acc1.toString());
 	}
 }
 //계좌번호:1002, 이름:김길동, 잔액:200000
