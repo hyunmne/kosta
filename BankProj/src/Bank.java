@@ -86,6 +86,7 @@ public class Bank {
 		}
 	}
 
+	
 	void deposit() throws BankException {
 		System.out.println("\n[입금]");
 		System.out.print("계좌를 입력하세요: ");
@@ -142,8 +143,11 @@ public class Bank {
 		String recvId = sc.next();
 		System.out.print("이체금액: ");
 		int money = sc.nextInt();
+		dao.transferAccount(sendId, recvId, money);
 
 	}
+	
+	
 
 
 	public static void main(String[] args) {

@@ -49,6 +49,11 @@ public class Account implements Serializable {
 		this.balance = balance;
 	}
 	
+	public void transDeposit(int money) throws BankException {
+		if (money <=0) throw new BankException(BankError.DEPOSIT);
+		balance += money;
+	}
+	
 	public void deposit(int money) throws BankException {
 		if(money<=0) throw new BankException(BankError.DEPOSIT);
 		balance += money;
@@ -56,9 +61,6 @@ public class Account implements Serializable {
 	
 	public void withdraw(int money) throws BankException {
 		if(money <= balance) balance -= money;
-//		if (balance < money) {
-//			throw new BankException(BankError.OVERDRAWN);
-//		}
 	}
 	
 	public String toString() {

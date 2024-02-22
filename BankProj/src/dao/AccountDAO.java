@@ -12,6 +12,8 @@ import java.util.Properties;
 
 import acc.Account;
 import acc.SpecialAccount;
+import exp.BankError;
+import exp.BankException;
 
 public class AccountDAO {
 	public Connection getConnection() {
@@ -162,7 +164,50 @@ public class AccountDAO {
 		return acc;
 	}
 	
-	public void transferAccount(String sid, String red) {
+	public void transferAccount(String sendId, String recvId,int money) throws BankException {
+		Connection conn = getConnection();
+		PreparedStatement pstmt = null;
+		
+		Account sendAcc = selectAccount(sendId);
+		if (sendAcc==null) throw new BankException(BankError.NO_SENDID);
+		Account recvAcc = selectAccount(recvId);
+		if (recvAcc==null) throw new BankException(BankError.NO_RECVID);
+		String sql = "update account set balance=? where id=?";
+		
+		try {
+			conn.setAutoCommit(false); // 트랜잭션 처리 시작
+			// 보내는 계좌의 출금처리 
+			sendAcc.withdraw(money);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, sendAcc.getBalance());
+			pstmt.setString(2, sendAcc.getId());
+			pstmt.executeUpdate();
+			pstmt.close();
+			
+			// 받는 계쫘 입금 처리
+			recvAcc.transDeposit(money);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, recvAcc.getBalance());
+			pstmt.setString(2, recvAcc.getId());
+			pstmt.executeUpdate();
+			
+			conn.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				conn.rollback(); 
+			} catch(Exception e2) {
+				e2.printStackTrace();
+			}
+		} finally {
+			try {
+				if (pstmt!=null) pstmt.close();
+				conn.setAutoCommit(true);
+			} catch(SQLException e) {
+				e.printStackTrace();
+			}
+			close(conn);
+		}
 		
 	}
 
