@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<h1>�α���</h1>
-<form action="login" method="post">
-	���̵� : <input type="text" name="id" /><br>
-	��й�ȣ : <input type="text" name="password" /><br>
-	<input type="submit" value="�α���" />
+<h1>로그인</h1>
+<!-- action으로 전송되는데, 확장자가 없으니 Servlet파일 (action 이름이랑 서블릿 경로 같아야 함) -->
+<!-- get방식: url에 데이터 노출 (doGet) -->
+<!-- post방식: url에 데이터 노출안됨 (doPost) -->
+<form action="login" method="post">  <!-- method 안 쓰면 기본적으로 get -->
+	아이디:<input type="text" name="id"/><br>
+	비밀번호:<input type="text" name="password"/><br>
+	<input type="submit" value="로그인"/>
 </form>
 </body>
 </html>
