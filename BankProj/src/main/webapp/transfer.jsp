@@ -39,20 +39,20 @@
 </head>
 <body>
 	<%@include file="header.jsp"%>
-    <form action="">
+    <form action="transfer" method="post">
         <div class="header"><h3>계좌 송금</h3></div>
         <div class="container">
             <div class="row">
                 <div class="title">보내는 계좌</div>
-                <div class="input"><input type="text"></div>
+                <div class="input"><input type="text" name="sendAcc"></div>
             </div>
             <div class="row">
                 <div class="title">받는 계좌</div>
-                <div class="input"><input type="text"></div>
+                <div class="input"><input type="text" name="recAcc"></div>
             </div>
             <div class="row">
                 <div class="title">송금액</div>
-                <div class="input"><input type="text"></div>
+                <div class="input"><input type="text" name="money"></div>
             </div>
 
             <div class="button">

@@ -58,4 +58,9 @@ public class Account {
 		if(balance>=money) balance -= money;
 	}
 	
+	public void transfer(String sendAcc, String recAcc, int money) {
+		
+		
+	}
+	
 }
