@@ -5,26 +5,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AccountInfoForm</title>
+    <title>Account Info Form</title>
     <style>
         .header {
             text-align: center;
         }
         .container {
-            width: 280px;
-            border: 1px solid black;
-            padding: 10px;
             margin: 0 auto;
+            border: 1px solid;
+            width: 280px;
+            padding: 10px;
         }
         .row {
             height: 30px;
         }
         .title {
             float: left;
-            width: 70px;
-            text-align: center;
+            width: 80px;
             font-weight: bold;
-        }
+            text-align: center;
+        } 
         .input {
             float: left;
         }
@@ -38,16 +38,16 @@
     </style>
 </head>
 <body>
-	<%@include file="header.jsp"%>
-    <form action="">
+<%@ include file="header.jsp" %>
+    <form action="accountInfo" method="post">
         <div class="header"><h3>계좌조회</h3></div>
         <div class="container">
             <div class="row">
                 <div class="title">계좌번호</div>
-                <div class="input"><input type="text"></div>
+                <div class="input"><input type="text" name="id"></div>
             </div>
             <div class="button">
-                <input type="submit" value="조 회">
+                <input type="submit" name="submit" value="조 회">
             </div>
         </div>
     </form>

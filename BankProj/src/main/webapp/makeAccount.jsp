@@ -50,7 +50,7 @@
                 }
             }
 
-            let form = document.forms[0];
+/*             let form = document.forms[0];
             form.onsubmit = function(e) {
                 let id = form.elements.id.value;
                 let name = form.elements.name.value;
@@ -62,14 +62,14 @@
                     grade = document.querySelector("#grade").value;
                 }
                 console.log(`계좌 번호: ${id}, 이름:${name}, 잔액:${balance}, 종류:${type}, 등급:${grade}`)
-                return false;
-            }
+                
+            } */
         }
     </script>
 </head>
 <body>
 	<%@include file="header.jsp"%>
-	<form action="">
+	<form action="makeaccount" method="post"> <!-- makeAccount로 입력 받은 값을 보내줌 -->
         <div class="header"><h3>계좌개설</h3></div>
         <div class="container">
             <div class="row">
