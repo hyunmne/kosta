@@ -7,7 +7,16 @@ public class User {
 	private String email;
 	private String address;
 	
+	public User() {}
 	
+	public User(String id, String name, String password, String email, String address) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.password = password;
+		this.email = email;
+		this.address = address;
+	}
 	public String getId() {
 		return id;
 	}
