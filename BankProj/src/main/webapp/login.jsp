@@ -1,10 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String cookieHeader = request.getHeader("Cookie");
+	boolean autologin = false;
+	String id = "";
+	String password = "";
+	if(cookieHeader!=null){
+		Cookie[] cookies = request.getCookies();
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("autologin")) {
+				autologin = true;
+			} else if (cookie.getName().equals("id")) {
+				id = cookie.getValue();
+			} else if (cookie.getName().equals("password")) {
+				password = cookie.getValue();
+			}
+		}
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Kosta Bank Login</title>
 <style type="text/css">
         .header {
             text-align: center;
@@ -23,11 +41,20 @@
 	<table border="1" class="container">
 		<tr>
 			<td>아이디</td>
-			<td><input type="text" name="id"/></td>
+			<td><input type="text" name="id" value="<%=id%>"/></td>
 		</tr>
 		<tr>
 			<td>비밀번호</td>
-			<td><input type="password" name="password"/></td>
+			<td><input type="password" name="password" value="<%=password%>"/></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+			<%if(autologin) { %>
+				<input type="checkbox" value="true" name="autologin" checked="checked"/>자동 로그인
+			<%} else { %>
+				<input type="checkbox" value="true" name="autologin" />자동 로그인
+			<%} %>
+			</td>
 		</tr>
 		<tr>
 			<td colspan="2"><input type="submit" value="로그인"/></td>
