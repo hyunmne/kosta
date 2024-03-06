@@ -22,7 +22,7 @@
 		<a href="transfer.jsp">계좌이체</a>
 		<div style="float: right;">
 			<c:choose>
-				<c:when test="${user==null }">
+				<c:when test="${sessionScope.user eq Empty}">
 					<a href="login.jsp">로그인</a>
 				</c:when>
 				<c:otherwise>
