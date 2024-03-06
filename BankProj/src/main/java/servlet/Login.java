@@ -34,28 +34,21 @@ public class Login extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("password");
+		RequestDispatcher dispatcher = null;
 		
 		HttpSession session = request.getSession();
 		Member mem = (Member) session.getAttribute(id);
-		String pw2 = (String)session.getAttribute(pw);
 		
-		RequestDispatcher dispatcher = null;
-		
-		if (mem==null) {
-			request.setAttribute("err", "계정이 존재하지 않습니다.");
+		if (mem==null) { // id error
+			request.setAttribute("err", "아이디가 틀립니다.");
 			dispatcher = request.getRequestDispatcher("error.jsp");
-		} else {
-			
-			if (request.getParameter("password") != pw2) {
+		} else if (mem.getPassword().equals(pw)==false){ // pw error
 				request.setAttribute("err", "비밀번호가 틀립니다! 다시 입력해주십시오.");
 				dispatcher = request.getRequestDispatcher("error.jsp");
-			}
-			
-			request.setAttribute("mem", mem);
-			dispatcher = request.getRequestDispatcher("login.jsp");
+		} else { // success : session에 사용자 정보 저장
+			session.setAttribute("user", mem.getId());
+			dispatcher = request.getRequestDispatcher("makeAccount.jsp");
 		}
 		dispatcher.forward(request, response);
-		
 	}
-
 }

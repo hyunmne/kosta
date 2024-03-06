@@ -1,74 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="vo.Member" %>
-<%
-	Member mem = (Member) request.getAttribute("mem");
-%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login</title>
-    <style>
+<title>Insert title here</title>
+<style type="text/css">
         .header {
             text-align: center;
         }
         .container {
-            width: 280px;
-            border: 1px solid black;
+            margin: 0 auto;
+            border: 1px solid;
+            width: 260px;
             padding: 10px;
-            margin: 0 auto;
         }
-        .row {
-            height: 30px;
-        }
-        .title {
-            float: left;
-            width: 70px;
-            text-align: center;
-            font-weight: bold;
-        }
-        .input {
-            float: left;
-        }
-        input[type='submit'] {
-            font-weight: bold;
-            width: 120px;
-            background-color: lightgray;
-            display: block;
-            margin: 0 auto;
-        }
-    </style>
+</style>
 </head>
 <body>
-
-<%@ include file="header.jsp" %>
-<form action="join" method="post">
-<h1>회원가입</h1>
+<% pageContext.include("header.jsp"); %>
+<div class="header"><h3>회원가입</h3></div>
+<form action="join" method="post" class="container">
 	<table border="1">
-		<tr>
-			<th>아이디</th>
-			<td><input type="text" name="id" id="id"></td>
-		</tr>
-		<tr>
-			<th>이름</th>
-			<td><input type="text" id="name" name="name"></td>
-		</tr>
-		<tr>
-			<th>비밀번호</th>
-			<td><input type="password" name="password" id="password"></td>
-		</tr>
-		<tr>
-			<th>이메일</th>
-			<td><input type="text" name="email" id="email"></td>
-		</tr>
-		<tr>
-			<th>주소</th>
-			<td><input type="text" name="address" id="address"></td>
-		</tr>
-		<tr>
-			<td><input type="submit" value="가입"></td>
-		</tr>
+		<tr><th>아이디</th><td> <input type="text" name="id"> </td></tr>
+		<tr><th>이름</th><td> <input type="text" name="name"> </td></tr>
+		<tr><th>비밀번호</th><td> <input type="password" name="password"> </td></tr>
+		<tr><th>이메일</th><td> <input type="text" name="email"> </td></tr>
+		<tr><th>주소</th><td> <input type="text" name="address"> </td></tr>
+		<tr><td colspan="2"><input type="submit" value="회원가입"></td></tr>
 	</table>
 </form>
 </body>

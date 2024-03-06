@@ -39,13 +39,19 @@ public class Join extends HttpServlet {
 		String address = request.getParameter("address");
 		
 		Member mem = new Member(id, name, password, email,address);
-		HttpSession session = request.getSession();
-		session.setAttribute(id, mem);
-		request.setAttribute("mem", mem);
-		request.setAttribute("err", "회원가입이 완료되었습니다.");
+		HttpSession session = request.getSession(); 
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
-		dispatcher.forward(request, response);
+
+		// 중복 아이디 확인
+		Object obj = session.getAttribute(id);
+		if(obj!=null) {
+			request.setAttribute("err", "사용 중인 아이디입니다.");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("error.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			session.setAttribute(id, mem);
+			response.sendRedirect("login.jsp"); // 보내는 data가 없으면 sendRedirect도 가능하다.
+		}
 	}
 
 }
