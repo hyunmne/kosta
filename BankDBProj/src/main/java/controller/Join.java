@@ -1,11 +1,17 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import dto.Member;
+import service.MemberService;
+import service.MemberServiceImpl;
 
 /**
  * Servlet implementation class Join
@@ -33,8 +39,26 @@ public class Join extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("utf-8");
+		String id = request.getParameter("id");
+		String name = request.getParameter("name");
+		String password = request.getParameter("password");
+		String email = request.getParameter("email");
+		String address = request.getParameter("address");
+		
+		Member mem = new Member(id, name, password, email, address);
+		
+		RequestDispatcher dispatcher = null;
+		try {
+			MemberService memberService = new MemberServiceImpl();
+			memberService.join(mem);
+			request.setAttribute("mem", mem);
+			dispatcher = request.getRequestDispatcher("login.jsp");
+		} catch (Exception e) {
+			request.setAttribute("err", e.getMessage());
+			dispatcher = request.getRequestDispatcher("error.jsp");
+		}
+		dispatcher.forward(request, response);
 	}
 
 }
