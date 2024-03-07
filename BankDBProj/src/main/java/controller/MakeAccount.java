@@ -8,9 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import dto.Account;
+import service.AccountService;
+import service.AccountServiceImpl;
 
 /**
  * Servlet implementation class MakeAccount
@@ -41,10 +42,12 @@ public class MakeAccount extends HttpServlet {
 
 		RequestDispatcher dispatcher = null;
 		try { // DB에 저장
+			AccountService accountService = new AccountServiceImpl();
+			accountService.makeAccount(acc);
 			request.setAttribute("acc", acc);
 			dispatcher = request.getRequestDispatcher("accountInfo.jsp");
 		} catch(Exception e) {
-			request.setAttribute("err", "계좌 개설에 실패했습니다.");
+			request.setAttribute("err", e.getMessage());
 		}
 		dispatcher.forward(request, response);
 	};
