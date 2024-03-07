@@ -18,7 +18,7 @@ import service.AccountServiceImpl;
  */
 @WebServlet("/makeAccount")
 public class MakeAccount extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+   private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,35 +28,36 @@ public class MakeAccount extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    /**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
-		String id = request.getParameter("id"); // makeAccount.jsp에서 보낸 값들을 변수에 넣어줌.
-		String name = request.getParameter("name");
-		int balance = Integer.parseInt(request.getParameter("balance"));
-		String type = request.getParameter("type");
-		String grade = request.getParameter("grade");
-		Account acc = new Account (id, name, balance, type,grade); // acc 객체 생성
-
-		RequestDispatcher dispatcher = null;
-		try { // DB에 저장
-			AccountService accountService = new AccountServiceImpl();
-			accountService.makeAccount(acc);
-			request.setAttribute("acc", acc);
-			dispatcher = request.getRequestDispatcher("accountInfo.jsp");
-		} catch(Exception e) {
-			request.setAttribute("err", e.getMessage());
-		}
-		dispatcher.forward(request, response);
-	};
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("makeAccount.jsp").forward(request, response);
-	}
+   /**
+    * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+    */
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      request.getRequestDispatcher("makeAccount.jsp").forward(request, response);
+   }
+   
+   @Override
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      request.setCharacterEncoding("utf-8");
+      String id = request.getParameter("id");
+      String name = request.getParameter("name");
+      int balance = Integer.parseInt(request.getParameter("balance"));
+      String type = request.getParameter("type");
+      String grade = request.getParameter("grade");
+      
+      Account acc = new Account(id, name, balance, type, grade);
+      
+      RequestDispatcher dispatcher = null;
+      try {
+         //DB에 저장
+         AccountService accountService = new AccountServiceImpl();
+         accountService.makeAccount(acc);
+         request.setAttribute("acc", acc);
+         dispatcher = request.getRequestDispatcher("accountInfo.jsp");
+      } catch (Exception e) {
+         request.setAttribute("err", e.getMessage());  //계좌번호가 중복됩니다
+         dispatcher = request.getRequestDispatcher("error.jsp");
+      }
+      dispatcher.forward(request, response);
+   }
 
 }

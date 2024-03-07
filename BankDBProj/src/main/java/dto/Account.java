@@ -54,8 +54,9 @@ public class Account {
 		if(money>0) balance += money;
 	}
 	
-	public void withdraw(int money) {
-		if(balance>=money) balance -= money;
+	public void withdraw(int money) throws Exception {
+		if(balance<money) throw new Exception("잔액이 부족합니다.");
+		balance -= money;
 	}
 	
 	public void transfer(String sendAcc, String recAcc, int money) {
