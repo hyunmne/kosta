@@ -54,7 +54,7 @@
 </head>
 <body>
 	<%@include file="header.jsp"%>
-	<form action="makeaccount" method="post"> <!-- makeAccount로 입력 받은 값을 보내줌 -->
+	<form action="makeAccount" method="post"> <!-- makeAccount로 입력 받은 값을 보내줌 -->
         <div class="header"><h3>계좌개설</h3></div>
         <div class="container">
             <div class="row">
