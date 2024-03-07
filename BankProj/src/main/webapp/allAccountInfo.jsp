@@ -6,15 +6,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	List<Account> accs = new ArrayList<>();
-	Enumeration<String> names = session.getAttributeNames();
-	while(names.hasMoreElements()){
-		String name = names.nextElement();
-		Object obj = session.getAttribute(name);
-		if(obj instanceof Account){
-			accs.add((Account)obj);
-		}
-	}
+
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -108,7 +100,7 @@
 				<div class="title column">종류</div>
 				<div class="title column">등급</div>
 			</div>
-			<c:forEach var="acc" items="<%=accs %>" varStatus="status">
+			<c:forEach var="acc" items="${requestScope.accs }" varStatus="status">
 				<div class="row">
 					<div class="column">${status.count }</div>
 					<div class="column">${acc.id }</div>

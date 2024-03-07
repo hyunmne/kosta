@@ -15,7 +15,7 @@ import vo.Account;
 /**
  * Servlet implementation class MakeAccountProc
  */
-@WebServlet("/makeaccount")
+@WebServlet("/makeAccount")
 public class MakeAccountProc extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -42,10 +42,13 @@ public class MakeAccountProc extends HttpServlet {
 		HttpSession session = request.getSession(); // 세션 생성 
 		session.setAttribute(id, acc); // session에 id를 키 값으로 acc 객체를 보내준다 > 여러 acc를 넣을 수 있다.
 		request.setAttribute("acc", acc); // 
-		
 		// servlet 사용할 때.. allAcountInfo에 데이터를 보내줌.
 		RequestDispatcher dispatcher = request.getRequestDispatcher("accountInfo.jsp");
 		dispatcher.forward(request, response);
 	};
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("makeAccount.jsp").forward(req, resp);
+	}
 
 }

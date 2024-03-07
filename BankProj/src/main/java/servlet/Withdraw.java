@@ -48,8 +48,10 @@ public class Withdraw extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("accountInfo.jsp");
 		}
 		dispatcher.forward(request, response);
-		
-				
+	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("withdraw.jsp").forward(req, resp);
 	}
 
 }

@@ -53,5 +53,9 @@ public class AccountInfo extends HttpServlet {
 		}
 		dispatcher.forward(request, response);
 	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("accountInfo.jsp").forward(req, resp);
+	}
 
 }

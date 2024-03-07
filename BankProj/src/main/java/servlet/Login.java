@@ -51,11 +51,12 @@ public class Login extends HttpServlet {
 			
 			// 자동 로그인 체크하여 쿠키로 내려보내기
 			String autologin = request.getParameter("autologin");
+			if(autologin==null) autologin="false";
 			Cookie autoLogin = new Cookie("autologin", autologin);
 			autoLogin.setMaxAge(600);
 			response.addCookie(autoLogin);
 			
-			if(autologin.equals("true")) {
+			if(autologin!=null && autologin.equals("true")) {
 				Cookie userId = new Cookie("id", id);
 				userId.setMaxAge(600);
 				Cookie userPw = new Cookie("password", pw);
@@ -66,5 +67,9 @@ public class Login extends HttpServlet {
 			dispatcher = request.getRequestDispatcher("makeAccount.jsp");
 		}
 		dispatcher.forward(request, response);
+	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("login.jsp").forward(req, resp);
 	}
 }

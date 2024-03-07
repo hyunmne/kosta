@@ -49,5 +49,9 @@ public class Deposit extends HttpServlet {
 		}
 		dispatcher.forward(request, response);	// request 값을 보내준다..? 
 	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("deposit.jsp").forward(req, resp);
+	}
 
 }

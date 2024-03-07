@@ -53,5 +53,9 @@ public class Join extends HttpServlet {
 			response.sendRedirect("login.jsp"); // 보내는 data가 없으면 sendRedirect도 가능하다.
 		}
 	}
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.getRequestDispatcher("join.jsp").forward(req, resp);
+	}
 
 }
