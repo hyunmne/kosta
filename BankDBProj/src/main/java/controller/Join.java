@@ -48,17 +48,14 @@ public class Join extends HttpServlet {
 		
 		Member mem = new Member(id, name, password, email, address);
 		
-		RequestDispatcher dispatcher = null;
 		try {
 			MemberService memberService = new MemberServiceImpl();
 			memberService.join(mem);
-			request.setAttribute("mem", mem);
-			dispatcher = request.getRequestDispatcher("login.jsp");
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 		} catch (Exception e) {
 			request.setAttribute("err", e.getMessage());
-			dispatcher = request.getRequestDispatcher("error.jsp");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		dispatcher.forward(request, response);
 	}
 
 }

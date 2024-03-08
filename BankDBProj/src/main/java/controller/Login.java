@@ -2,9 +2,9 @@ package controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -42,19 +42,38 @@ public class Login extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");
 		String pw = request.getParameter("password");
-		RequestDispatcher dispatcher = null;
+		
 		
 		try {
 			MemberService memberService = new MemberServiceImpl();
 			Member mem = memberService.login(id, pw); // memberInfo에서 id를 키값으로 
+			
+			// 로그인 성공시 cookie check 저저장
+			String autoLogin = request.getParameter("autoLogin");
+			Cookie autoLoginCookie = null;
+			Cookie idCookie = null;
+			Cookie pwCookie = null;
+			if(autoLogin!=null) {
+				autoLoginCookie = new Cookie("autoLogin", autoLogin);
+				idCookie = new Cookie("id", id);
+				pwCookie = new Cookie("password", pw);
+			} else {
+				autoLoginCookie = new Cookie("autoLogin", "false");
+				idCookie = new Cookie("id", "");
+				pwCookie = new Cookie("password", "");
+			}
+			response.addCookie(autoLoginCookie);
+			response.addCookie(idCookie);
+			response.addCookie(pwCookie);
+			
+			// session 저장 
 			request.setAttribute("mem", mem);
-			dispatcher = request.getRequestDispatcher("makeAccount.jsp");
+			request.getRequestDispatcher("makeAccount.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
-			dispatcher = request.getRequestDispatcher("error.jsp");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
-		dispatcher.forward(request, response);
 	}
 
 }

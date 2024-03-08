@@ -2,14 +2,16 @@
     pageEncoding="UTF-8"%>
 <%
 	String cookieHeader = request.getHeader("Cookie");
-	boolean autologin = false;
+	boolean autoLogin = false;
 	String id = "";
 	String password = "";
 	if(cookieHeader!=null){
 		Cookie[] cookies = request.getCookies();
 		for(Cookie cookie : cookies) {
-			if(cookie.getName().equals("autologin")) {
-				autologin = true;
+			if(cookie.getName().equals("autoLogin")) {
+				if (cookie.getValue().equals("true"))
+					autoLogin = true;
+				else autoLogin = false;
 			} else if (cookie.getName().equals("id")) {
 				id = cookie.getValue();
 			} else if (cookie.getName().equals("password")) {
@@ -49,10 +51,10 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-			<%if(autologin) { %>
-				<input type="checkbox" value="true" name="autologin" checked="checked"/>자동 로그인
+			<%if(autoLogin) { %>
+				<input type="checkbox" value="true" name="autoLogin" checked="checked"/>자동 로그인
 			<%} else { %>
-				<input type="checkbox" value="true" name="autologin" />자동 로그인
+				<input type="checkbox" value="true" name="autoLogin" />자동 로그인
 			<%} %>
 			</td>
 		</tr>
