@@ -65,4 +65,12 @@ public class AccountServiceImpl implements AccountService {
 		return accountList;
 	}
 
+	@Override
+	public boolean checkDoubleId(String id) throws Exception {
+		Account acc = accountDAO.selectAccount(id);
+		if(acc == null) return false;
+		
+		return true;
+	}
+
 }

@@ -36,7 +36,31 @@
             margin: 0 auto;
         }
     </style>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+	$(function(){
+		$('#doubleId').click(function(e){
+			e.preventDefault();
+			$.ajax({
+				url:'accountDoubleId', // 보내는 url
+				type:'post', // doPost 방식
+				async:true,
+				dataType:'text',
+				data:{id:$('#id').val()}, // 사용자가 입력한 값(id)를 받아옴
+				success:function(result){
+					if(result=='true'){
+						alert("계좌번호가 중복됩니다.");
+					} else {
+						alert("사용 가능한 계좌번호입니다.")
+					}
+				},
+				error:function(result){
+					
+				}
+			})
+		})
+	})
+	
         window.onload = function(){
             let select = document.querySelector("#grade");
             let types = document.querySelectorAll("input[name='type']");
@@ -59,7 +83,7 @@
         <div class="container">
             <div class="row">
                 <div class="title">계좌번호</div>
-                <div class="input"><input type="text" name="id" id="id"></div>
+                <div class="input"><input type="text" name="id" id="id">&nbsp;<button id="doubleId">중복</button></div>
             </div>
             <div class="row">
                 <div class="title">이름</div>

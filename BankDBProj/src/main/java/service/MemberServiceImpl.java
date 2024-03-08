@@ -25,4 +25,12 @@ public class MemberServiceImpl implements MemberService {
 		return mem;
 	}
 
+	@Override
+	public boolean checkDoubleId(String id) throws Exception {
+		Member mem = memberDAO.selectMember(id);
+		if(mem==null) return false;
+		
+		return true;
+	}
+
 }
