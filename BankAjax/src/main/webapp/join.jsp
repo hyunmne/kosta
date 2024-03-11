@@ -1,21 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style type="text/css">
-        .header {
-            text-align: center;
-        }
-        .container {
-            margin: 0 auto;
-            border: 1px solid;
-            width: 330px;
-            padding: 10px;
-        }
+<style>
+    .header {
+        text-align: center;
+    } 
+    .container {
+        width: 320px;
+        border: 1px solid black;
+        padding: 10px;
+        margin: 0 auto;
+    }
+    .row {
+        height: 30px;
+    }
+    .title {
+        float: left;
+        width: 70px;
+        text-align: center;
+        font-weight: bold;
+    }
+    .input {
+        float: left;
+    }
+    #submit {
+        font-weight: bold;
+        width: 120px;
+        background-color: lightgray;
+        display: block;
+        margin: 0 auto;
+    }
 </style>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(function(){
@@ -39,21 +59,66 @@
 				}
 			})
 		})
+		
+		$("#submit").click(function(e){
+			var mem = {};
+			mem.id = $('#id').val();
+			mem.name = $('#name').val();
+			mem.password = $('#password').val();
+			mem.email = $('#email').val();
+			mem.address = $('#address').val();
+			console.log(mem);
+			
+			$.ajax({
+				url:'login',
+				type:'post',
+				async:true,
+				data:{mem:JSON.stringify(mem)},
+				success:function(result){
+					alert(result);
+					if(result==true){
+						location.href="main"
+					} else {
+						alert(result)
+					}
+				},
+				error:function(err){
+					alert("회원가입에 실패하셨습니다.");
+				}
+			})
+		})
 	})
 </script>
 </head>
 <body>
-<% pageContext.include("header.jsp"); %>
-<div class="header"><h3>회원가입</h3></div>
-<form action="join" method="post" class="container">
-	<table border="1">
-		<tr><th>아이디</th><td> <input type="text" id="id" name="id">&nbsp;<button id="doubleId">중복</button> </td></tr>
-		<tr><th>이름</th><td> <input type="text" name="name"> </td></tr>
-		<tr><th>비밀번호</th><td> <input type="password" name="password"> </td></tr>
-		<tr><th>이메일</th><td> <input type="text" name="email"> </td></tr>
-		<tr><th>주소</th><td> <input type="text" name="address"> </td></tr>
-		<tr><td colspan="2"><input type="submit" value="회원가입"></td></tr>
-	</table>
-</form>
+<%@ include file="header.jsp" %>
+   <div class="header"><h3>회원가입</h3></div>
+   <div class="container">
+      <div class="row">
+         <div class="title">아이디</div>
+         <div class="input"><input type="text" name="id" id="id"/></div>&nbsp;
+         <button id="doubleId">중복</button>
+      </div>
+      <div class="row">
+         <div class="title">이름</div>
+         <div class="input"><input type="text" name="name" id="name"/></div>
+      </div>
+      <div class="row">
+         <div class="title">비밀번호</div>
+         <div class="input"><input type="password" name="password" id="password"/></div>
+      </div>
+      <div class="row">
+         <div class="title">이메일</div>
+         <div class="input"><input type="text" name="email" id="email"/></div>
+      </div>
+      <div class="row">
+         <div class="title">주소</div>
+         <div class="input"><input type="text" name="address" id="address"/></div>
+      </div>
+      <div class="button">
+         <button id="submit">회원가입</button>
+      </div>
+   </div>
 </body>
+
 </html>

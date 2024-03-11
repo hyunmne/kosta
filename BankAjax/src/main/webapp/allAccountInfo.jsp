@@ -53,14 +53,16 @@
     				var accs = JSON.parse(result);
     				var i=0;
     				for(var acc of accs){
-    					$("#container").append(`<div class="row">
-						    						<div class="column">\${++i}</div>
-						    						<div class="column">\${acc.id}</div>
-						    						<div class="column">\${acc.name}</div>
-						    						<div class="column">\${acc.balance}</div>
-						    						<div class="column">\${acc.type}</div>
-						    						<div class="column">\${acc.grade}</div>
-						    					 </div>`)
+    					$("#container").append(
+    							`<div class="row">
+							    	<div class="column">\${++i}</div>
+							    	<div class="column">\${acc.id}</div>
+							    	<div class="column">\${acc.name}</div>
+							    	<div class="column">\${acc.balance}</div>
+							    	<div class="column">\${acc.type}</div>
+							    	<div class="column">\${acc.grade}</div>
+							    </div>`
+							    )
     				}
     			},
     			error:function(err){
