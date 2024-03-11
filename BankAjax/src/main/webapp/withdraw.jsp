@@ -36,25 +36,47 @@
             margin: 0 auto;
         }
     </style>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+    	$(function() {
+    		$("#submit").click(function(){
+    			var withdraw = {}
+    			withdraw.id = $("#id").val();
+    			withdraw.money = +$("#money").val();
+    			$.ajax({
+    				url:"withdraw",
+    				type:"post",
+    				async:true,
+    				data:{withdraw:JSON.stringify(withdraw)},
+    				success : function(result){
+    					alert(result);
+    					$("#id").val("");
+    					$("#money").val("");
+    				},
+    				error : function(err) {
+    					alert("출금에 실패했습니다.")
+    				}
+    			})
+    		})
+    	})
+    </script>
 </head>
 <body>
 	<%@include file="header.jsp"%>
-    <form action="withdraw" method="post">
         <div class="header"><h3>출 금</h3></div>
         <div class="container">
             <div class="row">
                 <div class="title">계좌번호</div>
-                <div class="input"><input type="text" name="id"></div>
+                <div class="input"><input type="text" name="id" id="id"></div>
             </div>
             <div class="row">
                 <div class="title">출금액</div>
-                <div class="input"><input type="text" name="money"></div>
+                <div class="input"><input type="text" name="money" id="money"></div>
             </div>
 
-            <div class="button">
-                <input type="submit" value="출 금">
+            <div class="button" style="margin-left:120px">
+                <button id="submit">출 금</button>
             </div>
         </div>
-    </form>
 </body>
 </html>
