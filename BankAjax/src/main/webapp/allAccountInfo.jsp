@@ -42,10 +42,36 @@
             border: 1px solid;
         }
     </style>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+    	$(function(){
+    		$.ajax ({
+    			url:'allAccountInfo',
+    			type:'post',
+    			async:true,
+    			success:function(result){
+    				var accs = JSON.parse(result);
+    				var i=0;
+    				for(var acc of accs){
+    					$("#container").append(`<div class="row">
+						    						<div class="column">\${++i}</div>
+						    						<div class="column">\${acc.id}</div>
+						    						<div class="column">\${acc.name}</div>
+						    						<div class="column">\${acc.balance}</div>
+						    						<div class="column">\${acc.type}</div>
+						    						<div class="column">\${acc.grade}</div>
+						    					 </div>`)
+    				}
+    			},
+    			error:function(err){
+    				alert("계좌 정보를 불러올 수 없습니다.")
+    			}
+    		})
+    	})
+    </script>
 </head>
 <body>
 <%@ include file="header.jsp" %>
-    <form action="">
 		<div class="header">
 			<h3>전체 계좌 조회</h3>
 		</div>
@@ -58,21 +84,6 @@
 				<div class="title column">종류</div>
 				<div class="title column">등급</div>
 			</div>
-			<c:forEach var="acc" items="${requestScope.accs }" varStatus="status">
-				<div class="row">
-					<div class="column">${status.count }</div>
-					<div class="column">${acc.id }</div>
-					<div class="column">${acc.name }</div>
-					<div class="column">${acc.balance }</div>
-					<div class="column">${acc.type }</div>
-					<div class="column">
-						<c:if test='${acc.grade eq Empty }'>
-                			${acc.grade }
-                		</c:if>
-					</div>
-				</div>
-			</c:forEach>
 		</div>
-	</form>
 </body>
 </html>

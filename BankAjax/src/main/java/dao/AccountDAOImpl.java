@@ -67,8 +67,8 @@ public class AccountDAOImpl implements AccountDAO {
 
 	@Override
 	public void updateAccountBalance(String id, int balance) throws Exception {
-		String sql = "update account set balance=? where id=?";
 		Connection conn = JdbcUtil.getConnection();
+		String sql = "update account set balance=? where id=?";
 		PreparedStatement pstmt = null;
 
 		try {
@@ -99,10 +99,10 @@ public class AccountDAOImpl implements AccountDAO {
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
+			JdbcUtil.rollback(conn);
 			return false;
 		} finally {
 			pstmt.close();
-			conn.close();
 		}
 
 	}
