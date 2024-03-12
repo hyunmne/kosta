@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Board;
@@ -21,6 +23,16 @@ public class BoardDAOImpl implements BoardDAO {
 	public void insertFile(File file) throws Exception {
 		sqlSession.insert("mapper.board.insertFile", file);
 		sqlSession.commit();
+	}
+
+	@Override
+	public List<Board> selectBrdList(Integer row) throws Exception {
+		return sqlSession.selectList("mapper.board.selectBrdList", row);
+	}
+
+	@Override
+	public Integer selectBrdCnt() throws Exception {
+		return sqlSession.selectOne("mapper.board.selectBrdCnt");
 	}
 
 }

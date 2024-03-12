@@ -15,4 +15,17 @@
 			values (#{directory}, #{name}, #{size}, #{contenttype}, CURDATE())
 		]]>
 	</insert>
+	
+	<select id="selectBrdList" parameterType="Integer" resultType="Board">
+		<![CDATA[
+			select * from board order by num desc
+			limit #{row}, 10
+		]]>
+	</select>
+	
+	<select id="selectBrdCnt" resultType="Integer">
+		<![CDATA[
+			select count(*) from board
+		]]>
+	</select>
 </mapper>

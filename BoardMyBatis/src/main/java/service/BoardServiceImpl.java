@@ -1,5 +1,7 @@
 package service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.oreilly.servlet.MultipartRequest;
@@ -10,6 +12,7 @@ import dao.BoardDAO;
 import dao.BoardDAOImpl;
 import dto.Board;
 import dto.File;
+import util.PageInfo;
 
 public class BoardServiceImpl implements BoardService {
 
@@ -53,5 +56,33 @@ public class BoardServiceImpl implements BoardService {
 		board.setContent(content);
 		board.setWriter(writer);
 		boardDAO.insertDAO(board);
+	}
+
+	@Override
+	public void brdListByPage(HttpServletRequest request) throws Exception {
+		String paramPage = request.getParameter("page");
+		Integer page = 1;
+		if (paramPage != null) {
+			page = Integer.parseInt(paramPage);
+		}
+		
+		int brdCnt = boardDAO.selectBrdCnt();
+		int maxPage = (int)Math.ceil((double)brdCnt/10);
+		int startPage = (page-1)/10*10+1;
+		int endPage = startPage+10-1;
+		if(endPage>maxPage) endPage = maxPage;
+		
+		PageInfo pageInfo = new PageInfo();
+		pageInfo.setCurPage(page);
+		pageInfo.setAllPage(maxPage);
+		pageInfo.setStartPage(startPage);
+		pageInfo.setEndPage(endPage);
+		
+		int row = (page-1)*10+1;
+		List<Board> boardList = boardDAO.selectBrdList(row);
+		
+		request.setAttribute("boardList", boardList);
+		request.setAttribute("pageInfo", pageInfo);
+		
 	}
 }
