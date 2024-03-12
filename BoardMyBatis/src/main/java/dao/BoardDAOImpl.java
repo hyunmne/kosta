@@ -6,11 +6,14 @@ import dto.Board;
 import util.MybatisSqlSessionFactory;
 
 public class BoardDAOImpl implements BoardDAO {
+	// sql session 생성
 	SqlSession sqlSession = MybatisSqlSessionFactory.getSqlSessionFactory().openSession();
 	
 	@Override
 	public void insertDAO(Board board) throws Exception {
-		sqlSession.insert("mapper.board.insertBoard", board); // mapper에서 id와 parameterType
+		// mapper에서 id와 parameterType
+		sqlSession.insert("mapper.board.insertBoard", board);
+		
 		sqlSession.commit();
 	}
 
