@@ -3,6 +3,7 @@ package dao;
 import org.apache.ibatis.session.SqlSession;
 
 import dto.Board;
+import dto.File;
 import util.MybatisSqlSessionFactory;
 
 public class BoardDAOImpl implements BoardDAO {
@@ -13,7 +14,12 @@ public class BoardDAOImpl implements BoardDAO {
 	public void insertDAO(Board board) throws Exception {
 		// mapper에서 id와 parameterType
 		sqlSession.insert("mapper.board.insertBoard", board);
-		
+		sqlSession.commit();
+	}
+
+	@Override
+	public void insertFile(File file) throws Exception {
+		sqlSession.insert("mapper.board.insertFile", file);
 		sqlSession.commit();
 	}
 

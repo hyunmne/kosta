@@ -7,19 +7,25 @@ public class Board {
 	private String subject;
 	private String content;
 	private Date writedate;
-	private String fileurl;
+	private Integer filenum;
 	private String writer;
 	private Integer viewcount;
 	private Integer likecount;
 	
-	public Integer getNum() {
-		return num;
+	public Integer getFilenum() {
+		return filenum;
+	}
+	public void setFilenum(Integer filenum) {
+		this.filenum = filenum;
 	}
 	public String getWriter() {
 		return writer;
 	}
 	public void setWriter(String writer) {
 		this.writer = writer;
+	}
+	public Integer getNum() {
+		return num;
 	}
 	public void setNum(Integer num) {
 		this.num = num;
@@ -41,12 +47,6 @@ public class Board {
 	}
 	public void setWritedate(Date writedate) {
 		this.writedate = writedate;
-	}
-	public String getFileurl() {
-		return fileurl;
-	}
-	public void setFileurl(String fileurl) {
-		this.fileurl = fileurl;
 	}
 	public Integer getViewcount() {
 		return viewcount;

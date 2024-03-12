@@ -1,7 +1,7 @@
 package service;
 
-import dto.Board;
+import javax.servlet.http.HttpServletRequest;
 
 public interface BoardService {
-	void boardWrite(Board board) throws Exception ;
+	void boardWrite(HttpServletRequest request) throws Exception ;
 }

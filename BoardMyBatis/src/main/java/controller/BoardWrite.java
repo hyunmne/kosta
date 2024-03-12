@@ -12,6 +12,7 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dto.Board;
+import dto.File;
 import service.BoardService;
 import service.BoardServiceImpl;
 
@@ -43,25 +44,9 @@ public class BoardWrite extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		// 파일 업로드 시작
-		String uploadPath = request.getServletContext().getRealPath("upload");
-		int size = 10*1024*1024;  // 업로드할 파일의 크기 지정 : 10MB
-		MultipartRequest multi = new MultipartRequest(request,uploadPath,size,"utf-8", new DefaultFileRenamePolicy());
-		// 파일 업로드 끝
-		String subject = multi.getParameter("subject");
-		String content = multi.getParameter("content");
-		String fileUrl = multi.getOriginalFileName("file");
-		String writer = multi.getParameter("writer");
-		
-		Board board = new Board();
-		board.setSubject(subject);
-		board.setContent(content);
-		board.setFileurl(fileUrl);
-		board.setWriter(writer);
-		
 		try {
 			BoardService brdService = new BoardServiceImpl();
-			brdService.boardWrite(board);
+			brdService.boardWrite(request);
 			request.getRequestDispatcher("writeform.jsp").forward(request, response);
 		} catch(Exception e){
 			e.printStackTrace();
