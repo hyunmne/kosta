@@ -8,25 +8,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import dto.Board;
-import dto.File;
 import service.BoardService;
 import service.BoardServiceImpl;
 
 /**
- * Servlet implementation class BoardWrite
+ * Servlet implementation class BoardDetail
  */
-@WebServlet("/boardWrite")
-public class BoardWrite extends HttpServlet {
+@WebServlet("/boardDetail")
+public class BoardDetail extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardWrite() {
+    public BoardDetail() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,23 +31,19 @@ public class BoardWrite extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("writeform.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
+		Integer num = Integer.parseInt(request.getParameter("num"));
 		
 		try {
 			BoardService brdService = new BoardServiceImpl();
-			brdService.boardWrite(request);
-			response.sendRedirect("boardList");
-		} catch(Exception e){
+			Board board = brdService.brdDetail(num);
+			request.setAttribute("board", board);
+			request.getRequestDispatcher("boardDetail.jsp").forward(request, response);
+		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "글쓰기 실패");
+			request.setAttribute("err", "게시물 상세 조회 실패");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
+
 }

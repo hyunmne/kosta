@@ -28,4 +28,10 @@
 			select count(*) from board
 		]]>
 	</select>
+	
+	<select id="selectBrd" resultType="Board" parameterType="Integer">
+		<![CDATA[
+			select * from board where num=#{num}
+		]]>
+	</select>
 </mapper>

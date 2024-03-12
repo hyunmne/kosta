@@ -35,4 +35,9 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne("mapper.board.selectBrdCnt");
 	}
 
+	@Override
+	public Board selectBrd(Integer num) throws Exception {
+		return sqlSession.selectOne("mapper.board.selectBrd", num);
+	}
+
 }

@@ -29,32 +29,42 @@ public class BoardServiceImpl implements BoardService {
 		// 파일 업로드 시작
 		String uploadPath = request.getServletContext().getRealPath("upload");
 		int size = 10*1024*1024;  // 업로드할 파일의 크기 지정 : 10MB
-		MultipartRequest multi = new MultipartRequest(request,uploadPath,size,"utf-8", 
-				new FileRenamePolicy() { // 파일명 바꿔주는 클래스,,, 
-			@Override
-			public java.io.File rename(java.io.File file) {
-				File uploadFile = new File();
-				try {
-					uploadFile.setName(file.getName());
-					uploadFile.setDirectory(uploadPath);
-					uploadFile.setSize(file.length());
-					boardDAO.insertFile(uploadFile);
-					board.setFilenum(uploadFile.getNum());
-				} catch(Exception e) {
-					e.printStackTrace();
-				}
-				return new java.io.File(file.getParent(), uploadFile.getNum()+"");
-			}
-		});
-		// 파일 업로드 끝
+//		MultipartRequest multi = new MultipartRequest(request,uploadPath,size,"utf-8", 
+//				new FileRenamePolicy() { // 파일명 바꿔주는 클래스,,, 
+//			@Override
+//			public java.io.File rename(java.io.File file) {
+//				File uploadFile = new File();
+//				try {
+//					uploadFile.setName(file.getName());
+//					uploadFile.setDirectory(uploadPath);
+//					uploadFile.setSize(file.length());
+//					boardDAO.insertFile(uploadFile);
+//					board.setFilenum(uploadFile.getNum());
+//				} catch(Exception e) {
+//					e.printStackTrace();
+//				}
+//				return new java.io.File(file.getParent(), uploadFile.getNum()+"");
+//			}
+//		});
+		// 파일 정보 업로드
+		MultipartRequest multi = new MultipartRequest(request,uploadPath,size,"utf-8", new DefaultFileRenamePolicy());
 
-		String subject = multi.getParameter("subject");
-		String content = multi.getParameter("content");
-		String writer = multi.getParameter("writer");
-
-		board.setSubject(subject);
-		board.setContent(content);
-		board.setWriter(writer);
+		// 파일 정보 테이블에 저장
+		File uploadFile = new File();
+		uploadFile.setName(multi.getOriginalFileName("file"));
+		uploadFile.setDirectory(uploadPath);
+		uploadFile.setContenttype(multi.getContentType("file"));
+		uploadFile.setSize(multi.getFile("file").length());
+		boardDAO.insertFile(uploadFile);
+		
+		// ㅠㅏ일 번호로 업로드한 파일명 변경
+		java.io.File file = new java.io.File(uploadPath, multi.getFilesystemName("file"));
+		file.renameTo(new java.io.File(file.getParent(),uploadFile.getNum()+""));
+		
+		board.setFilenum(uploadFile.getNum());
+		board.setSubject(multi.getParameter("subject"));
+		board.setContent(multi.getParameter("content"));
+		board.setWriter(multi.getParameter("writer"));
 		boardDAO.insertDAO(board);
 	}
 
@@ -78,11 +88,16 @@ public class BoardServiceImpl implements BoardService {
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 		
-		int row = (page-1)*10+1;
+		int row = (page-1)*10;
 		List<Board> boardList = boardDAO.selectBrdList(row);
 		
 		request.setAttribute("boardList", boardList);
 		request.setAttribute("pageInfo", pageInfo);
 		
+	}
+
+	@Override
+	public Board brdDetail(Integer num) throws Exception {
+		return boardDAO.selectBrd(num);
 	}
 }
