@@ -40,4 +40,10 @@ public class BoardDAOImpl implements BoardDAO {
 		return sqlSession.selectOne("mapper.board.selectBrd", num);
 	}
 
+	@Override
+	public void updateBoard(Board board) throws Exception {
+		sqlSession.update("mapper.board.updateBoard", board);
+		sqlSession.commit();
+	}
+
 }

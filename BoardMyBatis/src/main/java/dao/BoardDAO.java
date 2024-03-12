@@ -11,4 +11,5 @@ public interface BoardDAO {
 	List<Board> selectBrdList (Integer row) throws Exception;
 	Integer selectBrdCnt() throws Exception;
 	Board selectBrd(Integer num) throws Exception;
+	void updateBoard(Board board) throws Exception;
 }
