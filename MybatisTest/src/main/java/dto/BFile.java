@@ -2,7 +2,7 @@ package dto;
 
 import java.sql.Date;
 
-public class File {
+public class BFile {
 	private Integer num;
 	private String directory;
 	private String name;
