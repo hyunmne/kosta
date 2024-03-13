@@ -6,7 +6,7 @@
 <configuration>
 <typeAliases>
 		<typeAlias type="dto.Board" alias="Board" />
-		<typeAlias type="dto.File" alias="File" />
+		<typeAlias type="dto.BFile" alias="BFile" />
 	</typeAliases>
 
 	<environments default="development">
