@@ -18,8 +18,7 @@
 		]]>
 	</insert>
 
-	<select id="selectBrdList" parameterType="Integer"
-		resultType="Board">
+	<select id="selectBrdList" parameterType="Integer" resultType="Board">
 		<![CDATA[
 			select * from board order by num desc
 			limit #{row}, 10
@@ -32,8 +31,7 @@
 		]]>
 	</select>
 
-	<select id="selectBrd" resultType="Board"
-		parameterType="Integer">
+	<select id="selectBrd" resultType="Board" parameterType="Integer">
 		<![CDATA[
 			select * from board where num=#{num}
 		]]>
