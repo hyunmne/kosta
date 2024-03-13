@@ -57,7 +57,15 @@ table {
 		</c:forEach>
 	</table>
 	<div id="emptyArea">
-		<a>&lt;</a>
+		<c:choose>
+			<c:when test="${pageInfo.curPage==1 }">
+				<a>&lt;</a>
+			</c:when>
+			<c:otherwise>
+				<a href="boardList?page=${pageInfo.curPage-1 }">&lt;</a>
+			</c:otherwise>
+		</c:choose>
+		
 		<c:forEach begin="${pageInfo.startPage }" end="${pageInfo.endPage }" var="i">
 			<c:choose>
 				<c:when test="${i==pageInfo.curPage }">
@@ -68,7 +76,15 @@ table {
 				</c:otherwise>
 			</c:choose>
 		</c:forEach>
-		<a>&gt;</a>
+		
+		<c:choose>
+			<c:when test="${pageInfo.curPage==pageInfo.allPage }">
+				<a>&gt;</a>
+			</c:when>
+			<c:otherwise>
+				<a href="boardList?page=${pageInfo.curPage+1 }">&gt;</a>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </body>
 </html>
