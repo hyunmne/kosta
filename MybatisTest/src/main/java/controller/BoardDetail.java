@@ -43,7 +43,7 @@ public class BoardDetail extends HttpServlet {
 			request.getRequestDispatcher("boardDetail.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
-			request.setAttribute("err", "게시글 조회 실패0");
+			request.setAttribute("err", "게시글 조회 실패");
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
