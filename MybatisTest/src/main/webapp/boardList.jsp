@@ -52,6 +52,7 @@ table {
 				<td>${board.num }</td>
 				<td><a href="boardDetail?num=${board.num }">${board.subject }</a></td>
 				<td>${board.writer }</td>
+				<td>${board.writedate }</td>
 				<td>${board.viewcount }</td>
 			</tr>
 		</c:forEach>
