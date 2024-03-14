@@ -25,11 +25,14 @@
 				async:true,
 				data:{like:JSON.stringify({memberId:"${user.id}", boardNum:"${brd.num}"})},
 				success:function(result){
-					if(result='true') {
+					if(result=='true') {
 						$('#like').attr("src", "image?num=redheart.png")
 					} else {
 						$('#like').attr("src", "image?num=blackheart.png")
 					}
+				}, 
+				error:funcition(err) {
+					
 				}
 			})
 		})
