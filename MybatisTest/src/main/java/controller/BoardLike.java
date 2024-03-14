@@ -35,7 +35,6 @@ public class BoardLike extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String jsonParam = request.getParameter("like");
 		JSONParser parser = new JSONParser();
-		System.out.println(jsonParam);
 		try {
 			JSONObject jobj = (JSONObject) parser.parse(jsonParam);
 			String memberId = (String)jobj.get("memberId");
