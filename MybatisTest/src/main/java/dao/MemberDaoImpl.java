@@ -17,8 +17,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public List<Member> selectMemList() throws Exception {
-		return sqlSession.selectList("mapper.board.selectMemList");
+	public Member selectMember(String id) throws Exception {
+		return sqlSession.selectOne("mapper.member.selectMember", id);
 	}
-
 }
