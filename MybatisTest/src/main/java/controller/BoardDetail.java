@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dto.Board;
+import dto.Member;
+import service.BoardLikeService;
+import service.BoardLikeServiceImpl;
 import service.BoardService;
 import service.BoardServiceImpl;
 
@@ -38,8 +41,15 @@ public class BoardDetail extends HttpServlet {
 		try {
 			BoardService brdService = new BoardServiceImpl();
 			Board board = brdService.brdDetail(num);
-			
 			request.setAttribute("brd", board);
+
+			// 로그인 상태일 경우 좋아요 여부 확인하여 전송
+			Member member = (Member)request.getSession().getAttribute("user");
+			if(member!=null) {
+				BoardLikeService brdLikeService = new BoardLikeServiceImpl();
+				boolean brdLike = brdLikeService.boardLike(member.getId(), num);
+				request.setAttribute("like", String.valueOf(brdLike));
+			}
 			request.getRequestDispatcher("boardDetail.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();

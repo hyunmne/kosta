@@ -25,7 +25,7 @@
 		<a href="login" class="a">로그인</a>
 	</c:when>
 	<c:otherwise>
-		<b>${user.name }</b>&nbsp;&nbsp;<a href="logout">로그아웃</a>
+		<b>${user.name }</b>&nbsp;&nbsp;<a href="logout" class="a">로그아웃</a>
 	</c:otherwise>
 </c:choose>&nbsp;&nbsp;&nbsp;
 <a href="memberJoin" class="a">회원가입</a>&nbsp;&nbsp;&nbsp;
