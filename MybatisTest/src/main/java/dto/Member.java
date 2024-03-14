@@ -6,16 +6,27 @@ public class Member {
 	private String password;
 	private String email;
 	private String address;
+	private String detailAddress;
 	
+
 	public Member() {}
 	
-	public Member(String id, String name, String password, String email, String address) {
+	public Member(String id, String name, String password, String email, String address, String detailAddress) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.password = password;
 		this.email = email;
 		this.address = address;
+		this.detailAddress = detailAddress;
+	}
+	
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
 	}
 	
 	public String getId() {

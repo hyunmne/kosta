@@ -4,8 +4,8 @@
 <mapper namespace="mapper.member">
 	<insert id="insertMember" parameterType="Member">
 		<![CDATA[
-			insert into member (id, name, password, email, address)
-			values (#{id},#{name},#{password},#{email},#{address})
+			insert into member (id, name, password, email, address, detailAddress)
+			values (#{id},#{name},#{password},#{email},#{address},#{detailAddress})
 		]]>
 	</insert>
 	
