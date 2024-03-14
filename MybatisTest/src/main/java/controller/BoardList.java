@@ -37,6 +37,7 @@ public class BoardList extends HttpServlet {
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", "게시판 글 목록 조회 실패.");
+			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
 	}
 
