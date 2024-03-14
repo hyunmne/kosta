@@ -30,6 +30,7 @@ table {
 </script>
 </head>
 <body>
+<jsp:include page="main.jsp"/>
 	<section id="./writeForm">
 		<h2>게시판 글 등록</h2>
 		<form action="boardWrite" method="post" enctype="multipart/form-data" name="boardform">

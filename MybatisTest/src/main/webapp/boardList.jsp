@@ -38,10 +38,10 @@ table {
 </style>
 </head>
 <body>
-	<h3>
+<jsp:include page="main.jsp"/>
+	<h2 style="text-align:center;">
 		글 목록&nbsp;&nbsp;&nbsp;&nbsp;<a href="boardWrite">글쓰기</a>
-		&nbsp;&nbsp;&nbsp;&nbsp;<a href="memberJoin">회원가입</a>
-	</h3>
+	</h2>
 	<table>
 		<tr id="tr_top">
 			<th>번호</th>
