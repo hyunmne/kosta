@@ -12,16 +12,16 @@ import service.MemberService;
 import service.MemberServiceImpl;
 
 /**
- * Servlet implementation class MemberJoin
+ * Servlet implementation class Login
  */
-@WebServlet("/memberJoin")
-public class MemberJoin extends HttpServlet {
+@WebServlet("/login")
+public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberJoin() {
+    public Login() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,23 +30,23 @@ public class MemberJoin extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("join.jsp").forward(request, response);
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8");
 		try {
 			MemberService memService = new MemberServiceImpl();
-			memService.join(request);
+			memService.login(request);
 			response.sendRedirect("main");
-		} catch(Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());
 			request.getRequestDispatcher("error.jsp").forward(request, response);
 		}
+		
 	}
 
 }

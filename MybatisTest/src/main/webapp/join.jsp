@@ -38,7 +38,7 @@
 					}
 				},
 				error : function(result) {
-
+					alert("아이디 중복 체크 오류");
 				}
 			})
 		})
@@ -46,6 +46,7 @@
 </script>
 </head>
 <body>
+<jsp:include page="main.jsp"/>
 	<div class="header">
 		<h3>회원가입</h3>
 	</div>

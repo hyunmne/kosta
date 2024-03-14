@@ -37,6 +37,7 @@
         }</style>
 </head>
 <body>
+<jsp:include page="main.jsp"/>
 <div class="header"><h3>로그인</h3></div>
 <form action="login" method="post">
 	<table border="1" class="container">
