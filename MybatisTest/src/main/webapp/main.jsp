@@ -21,11 +21,14 @@
 <div id="header">
 <img src="image?num=logo.png" width="100px" height="100px">&nbsp;
 <c:choose>
-	<c:when test="${user eq Empty}">
-		<a href="login" class="a">로그인</a>
+	<c:when test="${nickname ne Empty}">
+		<b>${nickname }</b>&nbsp;&nbsp;<img src="${thumnail }" width="30px" height="30px" />&nbsp;&nbsp;<a href="logout" class="a">로그아웃</a>
+	</c:when>
+	<c:when test="${user ne Empty}">
+		<b>${user.name }</b>&nbsp;&nbsp;<a href="logout" class="a">로그아웃</a>
 	</c:when>
 	<c:otherwise>
-		<b>${user.name }</b>&nbsp;&nbsp;<a href="logout" class="a">로그아웃</a>
+		<a href="login" class="a">로그인</a>
 	</c:otherwise>
 </c:choose>&nbsp;&nbsp;&nbsp;
 <a href="memberJoin" class="a">회원가입</a>&nbsp;&nbsp;&nbsp;
