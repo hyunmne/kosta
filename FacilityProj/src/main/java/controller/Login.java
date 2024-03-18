@@ -1,12 +1,15 @@
 package controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import dto.Employee;
 import service.EmpService;
 import service.EmpServiceImpl;
 
@@ -35,9 +38,11 @@ public class Login extends HttpServlet {
 		
 		try {
 			EmpService service = new EmpServiceImpl();
-			service.login(empNo, empPw);
-//			response.sendRedirect("/list.jsp");
-			request.getRequestDispatcher("/list.jsp").forward(request, response);
+			Employee emp = service.login(empNo, empPw);
+			HttpSession session = request.getSession();
+			session.setAttribute("empNo", emp.getEmpNo());
+			session.setAttribute("empNm", emp.getEmpNm());
+			response.sendRedirect("/facility/list");
 		} catch(Exception e) {
 			e.printStackTrace();
 			request.setAttribute("err", e.getMessage());

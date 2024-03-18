@@ -11,7 +11,7 @@ $(function() {
 	
 	$('.updateBtn').click(function() {
 		var facilityId = $(this).parents('tr').attr('id');
-		location.href = '/sciencePark/facility/update?id=' + facilityId;
+		location.href = '/facility/update?id=' + facilityId;
 	});
 	
 	$('#reservationForm').submit(function() {
@@ -34,7 +34,7 @@ $(function() {
 	});
 
 	$('#logoutBtn').click(function() {
-		location.href = '/sciencePark/member/logout';
+		location.href = '/member/logout';
 	});
 	
 	function reserve(facility) {

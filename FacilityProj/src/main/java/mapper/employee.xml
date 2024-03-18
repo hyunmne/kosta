@@ -11,7 +11,7 @@
 	
 	<select id="selectEmp" parameterType="String" resultType="Employee">
 		<![CDATA[
-			select * from employee where emp_no = #{empNo}
+			SELECT emp_no as empNo, pw as pw, emp_nm as empNm  FROM employee WHERE emp_no = #{empNo}
 		]]>
 	</select>
 </mapper>

@@ -6,6 +6,7 @@
 <configuration>
 <typeAliases>
 		<typeAlias type="dto.Employee" alias="Employee" />
+		<typeAlias type="dto.Facility" alias="Facility" />
 	</typeAliases>
 
 	<environments default="development">
@@ -22,5 +23,6 @@
 	
 	<mappers>
 		<mapper resource="mapper/employee.xml"/>
+		<mapper resource="mapper/facility.xml"/>
 	</mappers>
 </configuration>
