@@ -1,7 +1,7 @@
 package dto;
 
 public class UserInfo {
-   private Long id;
+   private String id;
    private String password;
    private String name;
    private String nickname;
@@ -12,7 +12,16 @@ public class UserInfo {
    
    public UserInfo() {}
    
-   public UserInfo(Long id, String password, String name, String nickname, String email, String address,
+   public UserInfo(String id, String name, String nickname, String profileImg, String email) {
+	   super();
+	      this.id = id;
+	      this.name = name;
+	      this.nickname = nickname;
+	      this.email = email;
+	      this.profileImg = profileImg;
+   }
+   
+   public UserInfo(String id, String password, String name, String nickname, String email, String address,
          String profileImg, String thumbnailImg) {
       super();
       this.id = id;
@@ -25,7 +34,7 @@ public class UserInfo {
       this.thumbnailImg = thumbnailImg;
    }
    
-   public UserInfo(Long id, String nickname, String profileImg, String thumbnailImg) {
+   public UserInfo(String id, String nickname, String profileImg, String thumbnailImg) {
 	   super();
 	      this.id = id;
 	      this.nickname = nickname;
@@ -33,10 +42,10 @@ public class UserInfo {
 	      this.thumbnailImg = thumbnailImg;
    }
    
-   public Long getId() {
+   public String getId() {
       return id;
    }
-   public void setId(Long id) {
+   public void setId(String id) {
       this.id = id;
    }
    public String getPassword() {

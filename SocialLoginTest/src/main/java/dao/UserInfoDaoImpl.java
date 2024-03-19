@@ -1,5 +1,6 @@
 package dao;
 
+
 import org.apache.ibatis.session.SqlSession;
 
 import dto.UserInfo;
@@ -9,7 +10,7 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	SqlSession sqlSession = MybatisSqlSessionFactory.getSqlSessionFactory().openSession();
 	
 	@Override
-	public UserInfo selectUserInfo(Long id) throws Exception {
+	public UserInfo selectUserInfo(String id) throws Exception {
 		return sqlSession.selectOne("mapper.userInfo.selectUserInfo", id);
 	}
 

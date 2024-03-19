@@ -3,7 +3,7 @@
 
 <mapper namespace="mapper.userInfo">
 
-	<select id="selectUserInfo" parameterType="Long" resultType="UserInfo">
+	<select id="selectUserInfo" parameterType="String" resultType="UserInfo">
 		<![CDATA[ 
 			select * from userInfo where id=#{id}
 		]]>
@@ -11,8 +11,8 @@
 	
 	<insert id="insertUserInfo" parameterType="UserInfo">
 		<![CDATA[ 
-			insert userInfo (id,nickname, profile_img, thumbnail_img)
-				   values (#{id},#{nickname},#{profileImg},#{thumbnailImg})
+			insert userInfo (id, password, name, nickname, email, address, profile_img, thumbnail_img)
+				   values (#{id},#{password},#{name},#{nickname},#{email},#{address},#{profileImg},#{thumbnailImg})
 		]]>		
 	</insert>
 </mapper>
