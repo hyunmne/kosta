@@ -8,22 +8,28 @@
 <title>Address Search API</title>
 </head>
 <body>
+	<div id="container" style="height:auto;overflow:hidden;width:800px"></div>
+	<br>
+	<div id="moreBtn"><button id="moreBtn">더보기</button></div>
 </body>
-<div id="map1" style="width:250px;height:250px;margin-top:10px;display:none;"></div>
-<div id="map2" style="width:250px;height:250px;margin-top:10px;display:none;"></div>
-<div id="map3" style="width:250px;height:250px;margin-top:10px;display:none;"></div>
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=132351b1a2d2c8dce115b1dede467ee4&libraries=services"></script>
 <script>
-var mapContainer1 = document.getElementById('map1'); // 지도를 표시할 div 
-var mapContainer2 = document.getElementById('map2'); 
-var mapContainer3 = document.getElementById('map3'); 
-	
 // 주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
 
-function addressSearch(address, mapContainer, title) {
-	mapContainer.style.display='block';
+function makeMapDiv() {
+	const div = document.createElement('div');
+	div.style.width = '250px';
+	div.style.height = '250px';
+	div.style.marginTop = '10px';
+	div.style.marginRight = '10px';
+	div.style.display = 'inline-block';
+	return div;
+}
+
+function addressSearch(address, mapDiv, title) {
 	// 주소로 좌표를 검색합니다
 	geocoder.addressSearch(address, function(result, status) {
 
@@ -34,7 +40,7 @@ function addressSearch(address, mapContainer, title) {
 	    	            center: coords, 
 	    	            level: 3 
 	    	        }; 
-	    	var map = new kakao.maps.Map(mapContainer, mapOption)
+	    	var map = new kakao.maps.Map(mapDiv, mapOption)
 	    	 
 	        // 결과값으로 받은 위치를 마커로 표시합니다
 	        var marker = new kakao.maps.Marker({
@@ -55,11 +61,39 @@ function addressSearch(address, mapContainer, title) {
 }
 
 var locs = ${locs};
-var maps = [mapContainer1, mapContainer2, mapContainer3];
-
 locs.forEach(function(loc, index) {
-	addressSearch(loc.address, maps[index], loc.title);
+	var mapDiv = makeMapDiv(); 
+	document.querySelector('#container').appendChild(mapDiv);
+	addressSearch(loc.address, mapDiv, loc.title);
 })
+
+var page = ${page};
+var maxPage = ${maxPage};
+if(page>=maxPage) {
+	document.querySelector('#moreBtn').style.display = 'none';
+}
+
+document.querySelector('#moreBtn').onclick = function() {
+	$.ajax({
+		url:'moreLocation',
+		type:'get',
+		async:true,
+		data:{page:page+1},
+		success:function(result){
+			var locs = JSON.parse(result);
+			locs.forEach(function(loc, index) {
+				var mapDiv = makeMapDiv(); 
+				document.querySelector('#container').appendChild(mapDiv);
+				addressSearch(loc.address, mapDiv, loc.title);
+			})
+			page++;
+			if(page>=maxPage) {
+				document.querySelector('#moreBtn').style.display = 'none';
+			}
+
+		}
+	})
+}
 </script>
 </html>
 
